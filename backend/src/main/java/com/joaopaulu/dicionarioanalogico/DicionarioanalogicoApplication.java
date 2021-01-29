@@ -1,4 +1,4 @@
-package io.github.joaopaulu.dicionarioanalogico;
+package com.joaopaulu.dicionarioanalogico;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
