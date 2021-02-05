@@ -1,8 +1,7 @@
 package com.joaopaulu.dicionarioanalogico.resources;
 
-import com.joaopaulu.dicionarioanalogico.dto.FieldDTO;
-import com.joaopaulu.dicionarioanalogico.entities.Field;
-import com.joaopaulu.dicionarioanalogico.services.FieldService;
+import com.joaopaulu.dicionarioanalogico.dto.CategoryDTO;
+import com.joaopaulu.dicionarioanalogico.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,33 +13,33 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/fields")
-public class FieldResource {
+@RequestMapping(value = "/categorias")
+public class CategoryResource {
 
     @Autowired
-    private FieldService service;
+    private CategoryService service;
 
     @GetMapping
-    public ResponseEntity<Page<FieldDTO>> findAll(
+    public ResponseEntity<Page<CategoryDTO>> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage,
             @RequestParam(value = "direction", defaultValue = "ASC") String direction,
-            @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy){
+            @RequestParam(value = "orderBy", defaultValue = "descricao") String orderBy){
 
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
 
-        Page<FieldDTO> list = service.findAllPaged(pageRequest);
+        Page<CategoryDTO> list = service.findAllPaged(pageRequest);
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<FieldDTO> findById(@PathVariable Long id){
-        FieldDTO dto = service.findById(id);
+    public ResponseEntity<CategoryDTO> findById(@PathVariable Long id){
+        CategoryDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping
-    public ResponseEntity<FieldDTO> insert(@RequestBody FieldDTO dto){
+    public ResponseEntity<CategoryDTO> insert(@RequestBody CategoryDTO dto){
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
@@ -48,13 +47,13 @@ public class FieldResource {
     }
 
     @PutMapping(value = "{id}")
-    public ResponseEntity<FieldDTO> update(@PathVariable Long id, @RequestBody FieldDTO dto){
+    public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody CategoryDTO dto){
         dto = service.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<FieldDTO> delete(@PathVariable Long id){
+    public ResponseEntity<CategoryDTO> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

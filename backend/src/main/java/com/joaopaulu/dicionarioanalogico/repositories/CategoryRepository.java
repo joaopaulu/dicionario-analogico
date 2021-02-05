@@ -1,0 +1,7 @@
+package com.joaopaulu.dicionarioanalogico.repositories;
+
+import com.joaopaulu.dicionarioanalogico.entities.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CategoryRepository extends JpaRepository<Category, Long> {
+}
