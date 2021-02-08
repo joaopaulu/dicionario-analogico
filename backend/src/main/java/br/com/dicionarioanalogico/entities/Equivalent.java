@@ -8,7 +8,7 @@ import java.time.Instant;
 
 @Data
 @Entity
-@Table(name="categorias")
+@Table(name="equivalentes")
 public class Equivalent implements Serializable {
     public static final long serialVersionUID = 1L;
 
