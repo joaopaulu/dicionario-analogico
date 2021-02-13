@@ -3,36 +3,41 @@ package br.com.dicionarioanalogico.dto;
 import br.com.dicionarioanalogico.entities.User;
 import lombok.Data;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 public class UserDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private String username;
-    private String password;
-    private String role;
+
+    @NotBlank(message = "Campo obrigatório")
+    private String name;
+
+    @Email(message = "Favor entrar com email válido")
     private String email;
+
+    Set<RoleDTO> roles = new HashSet<>();
 
     public UserDTO(){
 
     }
 
-    public UserDTO(Long id, String username, String password, String role, String email) {
+    public UserDTO(Long id, String name, String email) {
         this.id = id;
-        this.username = username;
-        this.password = password;
-        this.role = role;
+        this.name = name;
         this.email = email;
     }
 
-    public UserDTO(User entity){
-        this.id = entity.getId();
-        this.username = entity.getUsername();
-        this.password = entity.getPassword();
-        this.role = entity.getRole();
-        this.email = entity.getEmail();
+    public UserDTO(User entity) {
+        id = entity.getId();
+        name = entity.getName();
+        email = entity.getEmail();
+        entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
     }
-
 }
+
