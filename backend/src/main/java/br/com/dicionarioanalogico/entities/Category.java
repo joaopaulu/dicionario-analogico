@@ -1,10 +1,15 @@
 package br.com.dicionarioanalogico.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -18,27 +23,14 @@ public class Category implements Serializable {
 
     private String descricao;
 
+    @CreationTimestamp
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant createdAt;
+    private LocalDate createdAt;
 
+    @UpdateTimestamp
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant updatedAt;
+    private LocalDate updatedAt;
 
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public Instant getUpdatedAt() {
-        return updatedAt;
-    }
-
-    @PrePersist
-    public void prePersist(){
-        createdAt = Instant.now();
-    }
-
-    @PreUpdate
-    public void preUpdate(){
-        updatedAt = Instant.now();
-    }
+    @ManyToMany(mappedBy = "categories")
+    private Set<Verbet> products = new HashSet<>();
 }

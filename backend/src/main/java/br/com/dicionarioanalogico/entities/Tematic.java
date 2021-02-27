@@ -1,15 +1,17 @@
 package br.com.dicionarioanalogico.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Data
 @Entity
 @Table(name = "campos_tematicos")
-public class Field implements Serializable {
+public class Tematic implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -26,27 +28,12 @@ public class Field implements Serializable {
 
     private String genero;
 
+    @CreationTimestamp
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant createdAt;
+    private LocalDate createdAt;
 
+    @UpdateTimestamp
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant updatedAt;
+    private LocalDate updatedAt;
 
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public Instant getUpdatedAt() {
-        return updatedAt;
-    }
-
-    @PrePersist
-    public void prePersist(){
-        createdAt = Instant.now();
-    }
-
-    @PreUpdate
-    public void preUpdate(){
-        updatedAt = Instant.now();
-    }
 }

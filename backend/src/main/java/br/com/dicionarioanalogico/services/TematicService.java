@@ -1,8 +1,8 @@
 package br.com.dicionarioanalogico.services;
 
-import br.com.dicionarioanalogico.dto.FieldDTO;
-import br.com.dicionarioanalogico.repositories.FieldRepository;
-import br.com.dicionarioanalogico.entities.Field;
+import br.com.dicionarioanalogico.dto.TematicDTO;
+import br.com.dicionarioanalogico.repositories.TematicRepository;
+import br.com.dicionarioanalogico.entities.Tematic;
 import br.com.dicionarioanalogico.services.exceptions.DatabaseException;
 import br.com.dicionarioanalogico.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,39 +17,39 @@ import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
-public class FieldService {
+public class TematicService {
 
     @Autowired
-    private FieldRepository repository;
+    private TematicRepository repository;
 
     @Transactional(readOnly = true)
-    public Page<FieldDTO> findAllPaged(PageRequest pageRequest){
-        Page<Field> list = repository.findAll(pageRequest);
-        return  list.map(FieldDTO::new);
+    public Page<TematicDTO> findAllPaged(PageRequest pageRequest){
+        Page<Tematic> list = repository.findAll(pageRequest);
+        return  list.map(TematicDTO::new);
     }
 
     @Transactional(readOnly = true)
-    public FieldDTO findById(Long id){
-        Optional<Field> obj = repository.findById(id);
-        Field entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not Found"));
-        return new FieldDTO(entity);
+    public TematicDTO findById(Long id){
+        Optional<Tematic> obj = repository.findById(id);
+        Tematic entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not Found"));
+        return new TematicDTO(entity);
     }
 
     @Transactional
-    public FieldDTO insert(FieldDTO dto){
-        Field entity = new Field();
+    public TematicDTO insert(TematicDTO dto){
+        Tematic entity = new Tematic();
         copyDtoEntity(dto, entity);
         entity = repository.save(entity);
-        return new FieldDTO(entity);
+        return new TematicDTO(entity);
     }
 
     @Transactional
-    public FieldDTO update(Long id, FieldDTO dto){
+    public TematicDTO update(Long id, TematicDTO dto){
         try {
-            Field entity = repository.getOne(id);
+            Tematic entity = repository.getOne(id);
             copyDtoEntity(dto, entity);
             entity = repository.save(entity);
-            return new FieldDTO(entity);
+            return new TematicDTO(entity);
         }catch (EntityNotFoundException e){
             throw new ResourceNotFoundException("Id not found " + id);
         }
@@ -65,7 +65,7 @@ public class FieldService {
         }
     }
 
-    private void copyDtoEntity(FieldDTO dto, Field entity) {
+    private void copyDtoEntity(TematicDTO dto, Tematic entity) {
         entity.setNome(dto.getNome());
         entity.setDescricao(dto.getDescricao());
         entity.setInformacao_gramatical(dto.getInformacao_gramatical());

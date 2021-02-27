@@ -1,7 +1,7 @@
 package br.com.dicionarioanalogico.resources;
 
-import br.com.dicionarioanalogico.dto.EquivalentDTO;
-import br.com.dicionarioanalogico.services.EquivalentService;
+import br.com.dicionarioanalogico.dto.VerbetDTO;
+import br.com.dicionarioanalogico.services.VerbetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,14 +13,14 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/equivalents")
-public class EquivalentResource {
+@RequestMapping(value = "/verbetes")
+public class VerbetResource {
 
     @Autowired
-    private EquivalentService service;
+    private VerbetService service;
 
     @GetMapping
-    public ResponseEntity<Page<EquivalentDTO>> findAll(
+    public ResponseEntity<Page<VerbetDTO>> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage,
             @RequestParam(value = "direction", defaultValue = "ASC") String direction,
@@ -28,18 +28,18 @@ public class EquivalentResource {
 
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
 
-        Page<EquivalentDTO> list = service.findAllPaged(pageRequest);
+        Page<VerbetDTO> list = service.findAllPaged(pageRequest);
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<EquivalentDTO> findById(@PathVariable Long id){
-        EquivalentDTO dto = service.findById(id);
+    public ResponseEntity<VerbetDTO> findById(@PathVariable Long id){
+        VerbetDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping
-    public ResponseEntity<EquivalentDTO> insert(@RequestBody EquivalentDTO dto){
+    public ResponseEntity<VerbetDTO> insert(@RequestBody VerbetDTO dto){
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
@@ -47,13 +47,13 @@ public class EquivalentResource {
     }
 
     @PutMapping(value = "{id}")
-    public ResponseEntity<EquivalentDTO> update(@PathVariable Long id, @RequestBody EquivalentDTO dto){
+    public ResponseEntity<VerbetDTO> update(@PathVariable Long id, @RequestBody VerbetDTO dto){
         dto = service.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<EquivalentDTO> delete(@PathVariable Long id){
+    public ResponseEntity<VerbetDTO> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

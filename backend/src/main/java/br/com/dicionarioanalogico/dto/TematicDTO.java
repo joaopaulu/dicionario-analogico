@@ -1,12 +1,12 @@
 package br.com.dicionarioanalogico.dto;
 
-import br.com.dicionarioanalogico.entities.Field;
+import br.com.dicionarioanalogico.entities.Tematic;
 import lombok.Data;
 
 import java.io.Serializable;
 
 @Data
-public class FieldDTO implements Serializable {
+public class TematicDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -16,11 +16,11 @@ public class FieldDTO implements Serializable {
     private String tipo_dependencia;
     private String genero;
 
-    public FieldDTO(){
+    public TematicDTO(){
 
     }
 
-    public FieldDTO(Long id, String nome, String descricao, String informacao_gramatical, String tipo_dependencia, String genero) {
+    public TematicDTO(Long id, String nome, String descricao, String informacao_gramatical, String tipo_dependencia, String genero) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -29,7 +29,7 @@ public class FieldDTO implements Serializable {
         this.genero = genero;
     }
 
-    public FieldDTO(Field entity){
+    public TematicDTO(Tematic entity){
         this.id = entity.getId();
         this.nome = entity.getNome();
         this.descricao = entity.getDescricao();
