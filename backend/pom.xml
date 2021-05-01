@@ -8,10 +8,10 @@
 		<version>2.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.devsuperior</groupId>
-	<artifactId>dscatalog</artifactId>
+	<groupId>br.com.dicionarioanalogico</groupId>
+	<artifactId>dicionarioanalogico</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>dscatalog</name>
+	<name>dicionarioanalogico</name>
 	<description>DsCatalog Bootcamp DevSuperior</description>
 
 	<properties>
@@ -90,13 +90,13 @@
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
-			<version>${io.springfox.version}</version>
+			<version>3.0.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
-			<version>${io.springfox.version}</version>
+			<version>3.0.0</version>
 		</dependency>
 
 		<dependency>
