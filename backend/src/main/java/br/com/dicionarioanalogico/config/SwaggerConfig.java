@@ -19,24 +19,25 @@ public class SwaggerConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class)).paths(PathSelectors.any())
+                .apis(RequestHandlerSelectors
+                .withClassAnnotation(RestController.class))
+                .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metaInfo());
     }
 
     private ApiInfo metaInfo() {
-
         ApiInfo apiInfo = new ApiInfo(
                 "Dicionario Analógico API REST",
                 "API REST do sistema de Dicionario Analógico API.",
                 "1.0",
                 "Termos de serviço",
-                new Contact("João Paulo Lima", "https://www.linkedin.com/in/joaopaulu/",
-                        "jptick@gmail.com"),
+                new Contact("João Paulo Lima", 
+                            "https://www.linkedin.com/in/joaopaulu/",
+                            "jptick@gmail.com"),
                 "Apache License Version 2.0",
                 "https://www.apache.org/licesen.html", new ArrayList<>()
         );
-
         return apiInfo;
     }
 }
