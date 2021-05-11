@@ -1,0 +1,28 @@
+.user-card-admin{
+  margin-bottom: 26px;
+  padding-top: 8px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  height: 95px;  
+}
+
+.user-card-name-admin{
+  font-size:18px;
+  line-height:25px;
+  letter-spacing: -0.015em;
+}
+
+.user-card-email-admin{
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.015em;
+  color: #9E9E9E;
+}
+
+@media (max-width: 768px){
+  .card-content{
+    margin-left:10px;
+  }
+}
