@@ -26,13 +26,13 @@ h6 {
 
 ul {
     list-style-type: none;
-    margin-bottom: 0;
+    margin-bottom: 0!important;
     padding-left: 0;
 }
 
 a {
     &:hover {
-        text-decoration: none;
+        text-decoration: none!important;
         color: unset;
     }
 }
@@ -47,7 +47,7 @@ a {
 
 .card-base {
     background: #fff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    padding: 20px;
 }
 
 .input-bt30 {

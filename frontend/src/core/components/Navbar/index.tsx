@@ -26,7 +26,7 @@ const Navbar = () => {
   };
   return (
     <nav className="bg-primary main-nav">
-      <Link to="#" className="nav-logo-text">
+      <Link to="/" className="nav-logo-text">
         <h4>Dicionário Analógico</h4>
       </Link>
       <button
@@ -48,7 +48,16 @@ const Navbar = () => {
               className="nav-link"
               onClick={() => setDrawerActive(false)}
             >
-              HOME
+              INÍCIO
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/apresentacao"
+              onClick={() => setDrawerActive(false)}
+            >
+              APRESENTAÇÃO
             </NavLink>
           </li>
           <li>
@@ -57,7 +66,7 @@ const Navbar = () => {
               to="/products"
               onClick={() => setDrawerActive(false)}
             >
-              CATÁLOGO
+              ELABORAÇÃO
             </NavLink>
           </li>
           <li>
