@@ -3,7 +3,7 @@ import { saveSessionData } from 'core/utils/auth';
 import { makeLogin } from 'core/utils/request';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import AuthCard from '../Card';
 import './styles.scss';
 
@@ -36,7 +36,7 @@ const Login = () => {
       });
   };
   return (
-    <AuthCard title="Acesso">
+    <AuthCard title="Acesse sua conta">
       {hasError && (
         <div className="alert alert-danger mt-5">
           Usuário ou senha inválidos!
@@ -81,10 +81,6 @@ const Login = () => {
             </div>
           )}
         </div>
-
-        <Link to="/auth/recover" className="login-link-recover">
-          Esqueci a senha?
-        </Link>
         <div className="login-submit">
           <ButtonIcon text="Entrar" />
         </div>
