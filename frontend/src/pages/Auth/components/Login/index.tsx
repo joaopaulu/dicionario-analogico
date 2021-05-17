@@ -1,11 +1,11 @@
 import ButtonIcon from 'core/components/Buttonicon';
-import React, { useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { saveSessionData } from 'core/utils/auth';
+import { makeLogin } from 'core/utils/request';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import AuthCard from '../Card';
 import './styles.scss';
-import { makeLogin } from 'core/utils/request';
-import { saveSessionData } from 'core/utils/auth';
 
 type FormState = {
   username: string;
@@ -36,7 +36,7 @@ const Login = () => {
       });
   };
   return (
-    <AuthCard title="login">
+    <AuthCard title="Acesso">
       {hasError && (
         <div className="alert alert-danger mt-5">
           Usuário ou senha inválidos!
@@ -86,13 +86,7 @@ const Login = () => {
           Esqueci a senha?
         </Link>
         <div className="login-submit">
-          <ButtonIcon text="logar" />
-        </div>
-        <div className="text-center">
-          <span className="not-registered">Não tem cadastro?</span>
-          <Link to="/auth/register" className="login-link-register">
-            CADASTRAR
-          </Link>
+          <ButtonIcon text="Entrar" />
         </div>
       </form>
     </AuthCard>
