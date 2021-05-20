@@ -63,7 +63,7 @@ const Navbar = () => {
           <li>
             <NavLink
               className="nav-link"
-              to="/products"
+              to="/elaboracao"
               onClick={() => setDrawerActive(false)}
             >
               ELABORAÇÃO

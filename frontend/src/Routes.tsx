@@ -1,5 +1,6 @@
 import PrivateRoute from 'core/components/Routes/PrivateRoute';
 import Apresentacao from 'pages/Apresentacao';
+import Elaboracao from 'pages/Elaboracao';
 import Home from 'pages/Home';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import Navbar from './core/components/Navbar';
@@ -16,6 +17,9 @@ const Routes = () => (
       </Route>
       <Route path="/apresentacao" exact>
         <Apresentacao />
+      </Route>
+      <Route path="/elaboracao" exact>
+        <Elaboracao />
       </Route>
       <Redirect from="/auth" to="/auth/login" exact />
       <Route path="/auth">
