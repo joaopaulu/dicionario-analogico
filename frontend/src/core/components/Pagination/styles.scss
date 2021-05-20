@@ -24,7 +24,7 @@
     cursor: pointer;
     margin-right: 10px;
     &.active {
-        background: #6ab04c;
+        background: var(--blue-1000);
     }
     &:hover {
         color: #fff;
@@ -44,7 +44,7 @@
 
 .page-active {
     cursor: pointer;
-    color: #6ab04c;
+    color: var(--blue-1000);
 }
 
 .page-inactive {

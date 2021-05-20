@@ -1,9 +1,10 @@
-import HomeAdmin from 'pages/Admin/components/Home';
+import PrivateRoute from 'core/components/Routes/PrivateRoute';
 import Apresentacao from 'pages/Apresentacao';
 import Home from 'pages/Home';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import Navbar from './core/components/Navbar';
 import history from './core/utils/history';
+import Admin from './pages/Admin';
 import Auth from './pages/Auth';
 
 const Routes = () => (
@@ -16,14 +17,14 @@ const Routes = () => (
       <Route path="/apresentacao" exact>
         <Apresentacao />
       </Route>
-      <Redirect from="/admin" to="/admin/home" exact />
-      <Route path="/admin" exact>
-        <HomeAdmin />
-      </Route>
       <Redirect from="/auth" to="/auth/login" exact />
       <Route path="/auth">
         <Auth />
       </Route>
+      <Redirect from="/admin" to="/admin/home" exact />
+      <PrivateRoute path="/admin">
+        <Admin />
+      </PrivateRoute>
     </Switch>
   </Router>
 );

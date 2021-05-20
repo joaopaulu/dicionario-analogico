@@ -8,7 +8,7 @@ const HomeAdmin = () => {
 
   useEffect(() => {
     const currentUserData = getSessionData();
-    setCurrentUser(currentUserData.userFirstName);
+    setCurrentUser(currentUserData.userName);
   }, [location]);
 
   return (
@@ -17,7 +17,7 @@ const HomeAdmin = () => {
         <h1 className="display-4">Bem vindo</h1>
         <p className="lead text-capitalize">{currentUser}</p>
         <hr />
-        <p>Sistema de gestão de PNR's do COLOG e Diretorias</p>
+        <p>Administração do Dicionário Analógico</p>
       </div>
     </div>
   );

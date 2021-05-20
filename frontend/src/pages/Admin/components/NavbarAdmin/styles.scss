@@ -25,14 +25,14 @@
     font-size: 18px;
     line-height: 25px;
     letter-spacing: -0.015em;
-    color: #9e9e9e;
+    color: var(--grisalle);
     text-decoration: none;
     &.active {
         background-color: #dfe6e9;
-        color: #6ab04c;
+        color: var(--blue-1000);
     }
     &:hover {
-        color: #6ab04c;
+        color: var(--blue-1000);
     }
 }
 

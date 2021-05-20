@@ -3,14 +3,14 @@ import history from './history';
 
 export const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'dicionario';
 export const CLIENT_SECRET =
-  process.env.REACT_APP_CLIENT_SECRET ?? 'dicionario123';
+  process.env.REACT_APP_CLIENT_SECRET ?? 'dicionario2021';
 
 type LoginResponse = {
   access_token: string;
   token_type: string;
   expires_in: number;
   scope: string;
-  userFirstName: string;
+  userName: string;
   userId: number;
 };
 
