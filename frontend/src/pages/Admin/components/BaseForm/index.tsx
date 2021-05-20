@@ -12,18 +12,19 @@ const BaseForm = ({ title, children }: Props) => {
 
   const handleCancel = () => {
     history.goBack();
+    return;
   };
   return (
     <div className="admin-base-form card-base">
       <h1 className="base-form-title">{title}</h1>
       {children}
       <div className="base-form-actions">
-        <button
+        <span
           className="border-radius-10 btn btn-outline-danger mr-3"
           onClick={handleCancel}
         >
           CANCELAR
-        </button>
+        </span>
         <button className="border-radius-10 btn btn-primary">SALVAR</button>
       </div>
     </div>

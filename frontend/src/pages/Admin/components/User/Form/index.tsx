@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { Roles } from 'core/types/User';
+import { makePrivateRequest } from 'core/utils/request';
+import { useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useHistory, useParams } from 'react-router-dom';
+import Select from 'react-select';
 import { toast } from 'react-toastify';
 import BaseForm from '../../BaseForm';
-import { makePrivateRequest } from 'core/utils/request';
-import { useHistory, useParams } from 'react-router-dom';
 import './styles.scss';
-import { Roles } from 'core/types/User';
-import Select from 'react-select';
 
 export type FormState = {
   firstName: string;
@@ -22,14 +22,8 @@ type ParamsType = {
 };
 
 const Form = () => {
-  const {
-    register,
-    handleSubmit,
-    errors,
-    setValue,
-    watch,
-    control,
-  } = useForm<FormState>();
+  const { register, handleSubmit, errors, setValue, watch, control } =
+    useForm<FormState>();
   const password = useRef({});
   password.current = watch('password', '');
   const history = useHistory();
@@ -108,27 +102,12 @@ const Form = () => {
           <div className="col-6">
             <div className="input-bt30">
               <input
-                ref={register({
-                  required: 'Campo obrigatório',
-                  minLength: {
-                    value: 5,
-                    message: 'O campo deve ter no mínimo 5 caracteres',
-                  },
-                  maxLength: {
-                    value: 60,
-                    message: 'O campo deve ter no máximo 60 caracteres',
-                  },
-                })}
+                ref={register}
                 type="text"
                 name="lastName"
                 className="form-control input-base"
                 placeholder="Sobrenome"
               />
-              {errors.lastName && (
-                <div className="invalid-feedback d-block">
-                  {errors.lastName.message}
-                </div>
-              )}
             </div>
           </div>
           <div className="col-6">

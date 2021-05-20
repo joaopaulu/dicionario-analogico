@@ -1,23 +1,24 @@
-.admin-container{
-  display: flex;
-}
-.admin-content{
-  padding: 25px 40px 45px 40px;
-  flex: 1;
+.admin-container {
+    display: flex;
 }
 
-.admin-list-container{
-  margin: 45px 0; 
+.admin-content {
+    padding: 25px 40px 45px 40px;
+    flex: 1;
 }
 
-.btn-danger{
-  color:#DF5753;
-  font-weight: bold;
-  background-color: #FFF;
+.admin-list-container {
+    margin: 20px 0;
 }
 
-@media (max-width: 768px){
-  .admin-container{
-    flex-direction: column;
-  }
+.btn-danger {
+    color: #df5753;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+@media (max-width: 768px) {
+    .admin-container {
+        flex-direction: column;
+    }
 }

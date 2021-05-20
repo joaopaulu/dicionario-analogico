@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import Pagination from 'core/components/Pagination';
 import { UsersResponse } from 'core/types/User';
 import { makePrivateRequest } from 'core/utils/request';
+import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Pagination from 'core/components/Pagination';
 import Card from '../Card';
-import './styles.scss';
 import CardLoader from '../Loaders/UserCardLoader';
 
 const List = () => {
@@ -17,7 +16,7 @@ const List = () => {
   const getUsers = useCallback(() => {
     const params = {
       page: activePage,
-      linesPerPage: 8,
+      linesPerPage: 5,
       direction: 'DESC',
       orderBy: 'id',
     };

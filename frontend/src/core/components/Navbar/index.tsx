@@ -26,9 +26,9 @@ const Navbar = () => {
   };
   return (
     <nav className="bg-primary main-nav">
-      <Link to="/" className="nav-logo-text">
+      <div className="nav-logo-text">
         <h4>Dicionário Analógico</h4>
-      </Link>
+      </div>
       <button
         className="menu-mobile-btn"
         type="button"
@@ -72,7 +72,7 @@ const Navbar = () => {
           <li>
             <NavLink
               className="nav-link"
-              to="/admin"
+              to="/admin/home"
               onClick={() => setDrawerActive(false)}
             >
               ADMIN

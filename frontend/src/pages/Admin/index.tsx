@@ -1,14 +1,18 @@
-import { Switch } from 'react-router-dom';
-import Navbar from './components/Navbar';
 import PrivateRoute from 'core/components/Routes/PrivateRoute';
-import './styles.scss';
+import { Switch } from 'react-router-dom';
+import HomeAdmin from './components/Home';
+import Navbar from './components/Navbar';
 import Users from './components/User';
+import './styles.scss';
 
 const Admin = () => (
   <div className="admin-container">
     <Navbar />
-    <div className="admin-content">
+    <div className="container mt-5">
       <Switch>
+        <PrivateRoute path="/admin/home">
+          <HomeAdmin />
+        </PrivateRoute>
         <PrivateRoute path="/admin/users" allowedRoutes={['ROLE_ADMIN']}>
           <Users />
         </PrivateRoute>

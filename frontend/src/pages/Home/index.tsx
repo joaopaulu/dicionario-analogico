@@ -16,7 +16,7 @@ const Home = () => (
           desconhecidas para o apendizado do Português do Brasil como segunda
           Língua?
         </p>
-        <Link to="/products" className="start-search-btn">
+        <Link to="/" className="start-search-btn">
           <ButtonIcon text="Eu quero" />
         </Link>
       </div>

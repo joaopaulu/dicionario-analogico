@@ -12,7 +12,9 @@ const Card = ({ user, onRemove }: Props) => {
   return (
     <div className="card-base user-card-admin">
       <div className="col-6 py-3">
-        <h3 className="card-content user-card-name-admin">{user.firstName}</h3>
+        <h3 className="card-content user-card-name-admin">
+          {user.firstName} {user.lastName}
+        </h3>
         <span className="user-card-email-admin">{user.email}</span>
       </div>
       <div className="col-3 pt-3 pr-5">

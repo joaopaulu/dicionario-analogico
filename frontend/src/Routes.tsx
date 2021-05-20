@@ -1,10 +1,10 @@
-import { Router, Switch, Route, Redirect } from 'react-router-dom';
-import Navbar from './core/components/Navbar';
-import Admin from './pages/Admin';
-import Home from './pages/Home';
-import Auth from './pages/Auth';
-import history from './core/utils/history';
+import HomeAdmin from 'pages/Admin/components/Home';
 import Apresentacao from 'pages/Apresentacao';
+import Home from 'pages/Home';
+import { Redirect, Route, Router, Switch } from 'react-router-dom';
+import Navbar from './core/components/Navbar';
+import history from './core/utils/history';
+import Auth from './pages/Auth';
 
 const Routes = () => (
   <Router history={history}>
@@ -16,13 +16,13 @@ const Routes = () => (
       <Route path="/apresentacao" exact>
         <Apresentacao />
       </Route>
+      <Redirect from="/admin" to="/admin/home" exact />
+      <Route path="/admin" exact>
+        <HomeAdmin />
+      </Route>
       <Redirect from="/auth" to="/auth/login" exact />
       <Route path="/auth">
         <Auth />
-      </Route>
-      <Redirect from="/admin" to="/admin/products" exact />
-      <Route path="/admin">
-        <Admin />
       </Route>
     </Switch>
   </Router>
