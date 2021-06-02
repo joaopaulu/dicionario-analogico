@@ -1,3 +1,4 @@
+import logo from 'core/assets/images/logo-dicionario.png';
 import { ReactComponent as MenuIcon } from 'core/assets/images/menu.svg';
 import {
   getAccessTokenDecoded,
@@ -27,7 +28,7 @@ const Navbar = () => {
   return (
     <nav className="bg-primary main-nav">
       <div className="nav-logo-text">
-        <h4>Dicionário Analógico</h4>
+        <img src={logo} alt="Dicionário Analógico" />
       </div>
       <button
         className="menu-mobile-btn"
