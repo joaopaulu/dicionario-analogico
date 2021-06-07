@@ -49,7 +49,7 @@ const Navbar = () => {
               className="nav-link"
               onClick={() => setDrawerActive(false)}
             >
-              INÍCIO
+              Início
             </NavLink>
           </li>
           <li>
@@ -58,7 +58,7 @@ const Navbar = () => {
               to="/apresentacao"
               onClick={() => setDrawerActive(false)}
             >
-              APRESENTAÇÃO
+              Apresentação
             </NavLink>
           </li>
           <li>
@@ -67,7 +67,52 @@ const Navbar = () => {
               to="/elaboracao"
               onClick={() => setDrawerActive(false)}
             >
-              ELABORAÇÃO
+              Elaboração
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/guia"
+              onClick={() => setDrawerActive(false)}
+            >
+              Guia de Consultas
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/lista"
+              onClick={() => setDrawerActive(false)}
+            >
+              Lista de Abreviaturas
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/creditos"
+              onClick={() => setDrawerActive(false)}
+            >
+              Créditos
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/referencias"
+              onClick={() => setDrawerActive(false)}
+            >
+              Referências
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/contato"
+              onClick={() => setDrawerActive(false)}
+            >
+              Contato
             </NavLink>
           </li>
           <li>
@@ -76,7 +121,7 @@ const Navbar = () => {
               to="/admin/home"
               onClick={() => setDrawerActive(false)}
             >
-              ADMIN
+              Admin
             </NavLink>
           </li>
           {drawerActive && (
@@ -101,7 +146,7 @@ const Navbar = () => {
               {!isAuthenticated() && (
                 <li>
                   <Link
-                    className="nav-link active"
+                    className="nav-link"
                     to="/auth/login"
                     onClick={() => setDrawerActive(false)}
                   >
@@ -131,7 +176,7 @@ const Navbar = () => {
         )}
         {!isAuthenticated() && (
           <Link
-            className="nav-link active"
+            className="nav-link"
             to="/auth/login"
             onClick={() => setDrawerActive(false)}
           >
