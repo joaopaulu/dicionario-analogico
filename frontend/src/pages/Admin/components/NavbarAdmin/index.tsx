@@ -14,10 +14,19 @@ const NavbarAdmin = () => (
           </NavLink>
         </li>
       </ul>
-      <div className="footer-nav">
+      <footer>
         <br />
-        <span>&copy; 2021 | SG4 COLOG </span>
-      </div>
+        <span>
+          &copy; 2021 |{' '}
+          <a
+            href="https://www.linkedin.com/in/joaopaulu/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            João Paulo Lima
+          </a>{' '}
+        </span>
+      </footer>
     </nav>
   </>
 );

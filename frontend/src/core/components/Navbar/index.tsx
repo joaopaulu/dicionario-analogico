@@ -158,7 +158,6 @@ const Navbar = () => {
       <div className="user-info-dnone text-right">
         {isAuthenticated() && (
           <>
-            {currentUser}
             <a
               href="#logout"
               className="nav-link active d-inline"
