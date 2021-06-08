@@ -1,9 +1,11 @@
 import PrivateRoute from 'core/components/Routes/PrivateRoute';
 import Apresentacao from 'pages/Apresentacao';
+import Creditos from 'pages/Creditos';
 import Elaboracao from 'pages/Elaboracao';
 import Guia from 'pages/Guia';
 import Home from 'pages/Home';
 import Lista from 'pages/Lista';
+import Referencias from 'pages/Referencias';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import Navbar from './core/components/Navbar';
 import history from './core/utils/history';
@@ -28,6 +30,12 @@ const Routes = () => (
       </Route>
       <Route path="/lista" exact>
         <Lista />
+      </Route>
+      <Route path="/creditos" exact>
+        <Creditos />
+      </Route>
+      <Route path="/referencias" exact>
+        <Referencias />
       </Route>
       <Redirect from="/auth" to="/auth/login" exact />
       <Route path="/auth">
