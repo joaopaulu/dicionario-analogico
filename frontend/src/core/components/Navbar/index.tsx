@@ -27,8 +27,15 @@ const Navbar = () => {
   };
   return (
     <nav className="bg-primary main-nav">
-      <div className="nav-logo-text">
-        <img src={logo} alt="Dicionário Analógico" />
+      <div className="nav-logo">
+        <NavLink
+          to="/"
+          exact
+          className="nav-link"
+          onClick={() => setDrawerActive(false)}
+        >
+          <img src={logo} alt="Dicionário Analógico" />
+        </NavLink>
       </div>
       <button
         className="menu-mobile-btn"
@@ -42,16 +49,6 @@ const Navbar = () => {
         className={drawerActive ? 'menu-mobile-container' : 'menu-container'}
       >
         <ul className="main-menu">
-          <li>
-            <NavLink
-              to="/"
-              exact
-              className="nav-link"
-              onClick={() => setDrawerActive(false)}
-            >
-              Início
-            </NavLink>
-          </li>
           <li>
             <NavLink
               className="nav-link"
