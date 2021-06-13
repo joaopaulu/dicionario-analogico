@@ -8,9 +8,11 @@ const Home = () => (
     <div className="home-content">
       <div className="home-text">
         <h1 className="text-title">Parte Alfabética</h1>
-        <h1 className="text-title">
-          <span>Parte Analógica</span>
-        </h1>
+        <Link to="/analogica">
+          <h1 className="text-title">
+            <span>Parte Analógica</span>
+          </h1>
+        </Link>
         <p className="text-subtitle">
           Você quer consultar o dicionário que possibilite encontrar palavras
           desconhecidas para o apendizado do Português do Brasil como segunda

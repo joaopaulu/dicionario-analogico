@@ -19,6 +19,7 @@
         "@types/react-router-dom": "^5.1.7",
         "@types/react-select": "^4.0.13",
         "axios": "^0.21.1",
+        "beautiful-react-diagrams": "^0.5.1",
         "bootstrap": "^4.6.0",
         "draft-js": "^0.11.7",
         "draft-js-import-html": "^1.4.1",
