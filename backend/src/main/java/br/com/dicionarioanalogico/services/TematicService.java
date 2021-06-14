@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TematicService {
@@ -23,9 +25,9 @@ public class TematicService {
     private TematicRepository repository;
 
     @Transactional(readOnly = true)
-    public Page<TematicDTO> findAllPaged(PageRequest pageRequest){
-        Page<Tematic> list = repository.findAll(pageRequest);
-        return  list.map(TematicDTO::new);
+    public List<TematicDTO> findAll(){
+        List<Tematic> result = repository.findAll();
+        return result.stream().map(TematicDTO::new).collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)

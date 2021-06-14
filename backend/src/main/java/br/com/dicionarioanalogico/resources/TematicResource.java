@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/tematics")
@@ -24,15 +25,8 @@ public class TematicResource {
 
     @GetMapping
     @ApiOperation("Busca todos os Campos Temáticos")
-    public ResponseEntity<Page<TematicDTO>> findAll(
-            @RequestParam(value = "page", defaultValue = "0") Integer page,
-            @RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage,
-            @RequestParam(value = "direction", defaultValue = "ASC") String direction,
-            @RequestParam(value = "orderBy", defaultValue = "nome") String orderBy){
-
-        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
-
-        Page<TematicDTO> list = service.findAllPaged(pageRequest);
+    public ResponseEntity<List<TematicDTO>> findAll(){
+        List<TematicDTO> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
