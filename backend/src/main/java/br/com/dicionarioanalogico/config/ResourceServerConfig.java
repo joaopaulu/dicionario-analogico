@@ -30,8 +30,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Autowired
     private JwtTokenStore tokenStore;
 
-    private static final String[] PUBLIC = {"/oauth/token", "/h2-console/**", "/swagger-ui.html/**"};
-    private static final String[] OPERATOR_OR_ADMIN = {"/articles/**", "/tematics/**", "/verbetes/**", "/categories/**"};
+    private static final String[] PUBLIC = {"/oauth/token", "/h2-console/**", "/swagger-ui.html/**",
+            "/tematics/**", "/articles/**", "/categories/**", "/verbetes/**"};
     private static final String[] ADMIN = {"/users/**"};
 
     @Override
@@ -43,14 +43,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
 
         //H2
-        if(Arrays.asList(env.getActiveProfiles()).contains("test")){
+        if (Arrays.asList(env.getActiveProfiles()).contains("test")) {
             http.headers().frameOptions().disable();
         }
 
         http.authorizeRequests()
-                .antMatchers(PUBLIC).permitAll()
-                .antMatchers(HttpMethod.GET, OPERATOR_OR_ADMIN).permitAll()
-                .antMatchers(OPERATOR_OR_ADMIN).hasAnyRole("OPERATOR", "ADMIN")
+                .antMatchers(HttpMethod.GET, PUBLIC).permitAll()
                 .antMatchers(ADMIN).hasRole("ADMIN")
                 .anyRequest().authenticated();
         http.cors().configurationSource(corsConfigurationSource());
