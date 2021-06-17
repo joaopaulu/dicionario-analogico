@@ -1,15 +1,13 @@
 package br.com.dicionarioanalogico.services;
 
 import br.com.dicionarioanalogico.dto.TematicDTO;
-import br.com.dicionarioanalogico.repositories.TematicRepository;
 import br.com.dicionarioanalogico.entities.Tematic;
+import br.com.dicionarioanalogico.repositories.TematicRepository;
 import br.com.dicionarioanalogico.services.exceptions.DatabaseException;
 import br.com.dicionarioanalogico.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
