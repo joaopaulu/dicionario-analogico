@@ -1,4 +1,5 @@
 import PrivateRoute from 'core/components/Routes/PrivateRoute';
+import Alfabetica from 'pages/Alfabetica';
 import Analogica from 'pages/Analogica';
 import Apresentacao from 'pages/Apresentacao';
 import Creditos from 'pages/Creditos';
@@ -40,6 +41,9 @@ const Routes = () => (
       </Route>
       <Route path="/analogica" exact>
         <Analogica />
+      </Route>
+      <Route path="/alfabetica" exact>
+        <Alfabetica />
       </Route>
       <Redirect from="/auth" to="/auth/login" exact />
       <Route path="/auth">

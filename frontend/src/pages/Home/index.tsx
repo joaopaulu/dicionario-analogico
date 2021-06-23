@@ -7,7 +7,11 @@ const Home = () => (
   <div className="home-container">
     <div className="home-content">
       <div className="home-text">
-        <h1 className="text-title">Parte Alfabética</h1>
+        <Link to="/alfabetica">
+          <h1 className="text-title">
+            <span>Parte Alfabética</span>
+          </h1>
+        </Link>
         <Link to="/analogica">
           <h1 className="text-title">
             <span>Parte Analógica</span>
