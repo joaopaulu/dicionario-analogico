@@ -22,10 +22,6 @@ const DataTable = () => {
       });
   }, [activePage]);
 
-  const changePage = (index: number) => {
-    setActivePage(index);
-  };
-
   return (
     <>
       <div className="table-responsive">
