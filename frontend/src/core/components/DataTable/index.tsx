@@ -3,6 +3,7 @@ import Pagination from 'core/components/Pagination';
 import { VerbetePage } from 'core/types/Verbete';
 import { BASE_URL } from 'core/utils/request';
 import { useEffect, useState } from 'react';
+import './styles.scss';
 
 const DataTable = () => {
   const [activePage, setActivePage] = useState(0);
@@ -34,7 +35,11 @@ const DataTable = () => {
           <tbody>
             {page.content?.map(item => (
               <tr key={item.id}>
-                <td>{item.descricao}</td>
+                <td>
+                  <span className="verbete-title">{item.descricao}</span>{' '}
+                  {item.separacaoSilabica} {item.genero}
+                  {item.definicao}
+                </td>
               </tr>
             ))}
           </tbody>

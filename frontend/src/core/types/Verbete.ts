@@ -13,4 +13,10 @@ export type VerbetePage = {
 export type Verbete = {
   id: number;
   descricao: string;
+  separacaoSilabica: string;
+  pronuncia: string;
+  genero: string;
+  transitividadeVerbal: string;
+  variantes: string;
+  definicao: string;
 };
