@@ -70,9 +70,9 @@ public class Verbet implements Serializable {
 
     private String equiLibras;
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "campo_tematico_id")
-    private Tematic tematic;
+    Set<Tematic> tematics = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id_created")

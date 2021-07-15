@@ -32,5 +32,5 @@ public class Category implements Serializable {
     private LocalDate updatedAt;
 
     @ManyToMany(mappedBy = "categories")
-    private Set<Verbet> products = new HashSet<>();
+    private Set<Verbet> verbets = new HashSet<>();
 }

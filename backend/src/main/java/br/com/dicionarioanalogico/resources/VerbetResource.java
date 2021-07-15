@@ -28,11 +28,12 @@ public class VerbetResource {
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "linesPerPage", defaultValue = "10") Integer linesPerPage,
             @RequestParam(value = "direction", defaultValue = "ASC") String direction,
+            @RequestParam(value = "textDescription", defaultValue = " ") String textDescription,
             @RequestParam(value = "orderBy", defaultValue = "descricao") String orderBy){
 
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
 
-        Page<VerbetDTO> list = service.findAllPaged(pageRequest);
+        Page<VerbetDTO> list = service.findAllPaged(pageRequest, textDescription);
         return ResponseEntity.ok().body(list);
     }
 

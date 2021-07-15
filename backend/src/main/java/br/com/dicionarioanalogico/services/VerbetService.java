@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
@@ -23,8 +24,13 @@ public class VerbetService {
     private VerbetRepository repository;
 
     @Transactional(readOnly = true)
-    public Page<VerbetDTO> findAllPaged(PageRequest pageRequest){
-        Page<Verbet> list = repository.findAll(pageRequest);
+    public Page<VerbetDTO> findAllPaged(PageRequest pageRequest, String textDescription){
+        var temDescricao = Boolean.FALSE;
+        if (textDescription != null && textDescription.length() > 0){
+            temDescricao =   Boolean.TRUE;
+        }
+
+        Page<Verbet> list = repository.find(textDescription, temDescricao, pageRequest);
         return list.map(VerbetDTO::new);
     }
 

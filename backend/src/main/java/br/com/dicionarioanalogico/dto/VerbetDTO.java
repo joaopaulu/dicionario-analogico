@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class VerbetDTO implements Serializable {
@@ -36,10 +39,12 @@ public class VerbetDTO implements Serializable {
     private String equiJapones;
     private String equiLibras;
 
+    private List<TematicDTO> tematics = new ArrayList<>();
+
     public VerbetDTO() {
     }
 
-    public VerbetDTO(Long id, String descricao, String separacaoSilabica, String pronuncia, String genero, String transitividadeVerbal, String variantes, String definicao, String fonteDefinicao, String abvFonteContexto, String notas, String fonteNota, String autor, String abvAutor, String fraseologia, LocalDate data, String ilustracao, Long dependente, Long tipoDependencia, String equiEspanhol, String equiFrances, String equiIngles, String equiItaliano, String equiJapones, String equiLibras) {
+    public VerbetDTO(Long id, String descricao, String separacaoSilabica, String pronuncia, String genero, String transitividadeVerbal, String variantes, String definicao, String fonteDefinicao, String abvFonteContexto, String notas, String fonteNota, String autor, String abvAutor, String fraseologia, LocalDate data, String ilustracao, Long dependente, Long tipoDependencia, String equiEspanhol, String equiFrances, String equiIngles, String equiItaliano, String equiJapones, String equiLibras, List<TematicDTO> tematics) {
         this.id = id;
         this.descricao = descricao;
         this.separacaoSilabica = separacaoSilabica;
@@ -65,6 +70,7 @@ public class VerbetDTO implements Serializable {
         this.equiItaliano = equiItaliano;
         this.equiJapones = equiJapones;
         this.equiLibras = equiLibras;
+        this.tematics= tematics;
     }
 
     public VerbetDTO(Verbet entity) {
@@ -93,5 +99,6 @@ public class VerbetDTO implements Serializable {
         equiItaliano = entity.getEquiItaliano();
         equiJapones = entity.getEquiJapones();
         equiLibras = entity.getEquiLibras();
+       // tematics = tematics.getTematics().stream().map(TematicDTO::new).collect(Collectors.toList());
     }
 }
