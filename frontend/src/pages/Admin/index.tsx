@@ -1,5 +1,6 @@
 import PrivateRoute from 'core/components/Routes/PrivateRoute';
 import { Switch } from 'react-router-dom';
+import Categories from './components/Category';
 import HomeAdmin from './components/Home';
 import NavbarAdmin from './components/NavbarAdmin';
 import Users from './components/User';
@@ -15,6 +16,9 @@ const Admin = () => (
         </PrivateRoute>
         <PrivateRoute path="/admin/users" allowedRoutes={['ROLE_ADMIN']}>
           <Users />
+        </PrivateRoute>
+        <PrivateRoute path="/admin/categories" allowedRoutes={['ROLE_ADMIN']}>
+          <Categories />
         </PrivateRoute>
       </Switch>
     </div>
