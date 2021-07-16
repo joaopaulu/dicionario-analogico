@@ -1,4 +1,4 @@
-export type VerbetePage = {
+export type VerbeteResponse = {
   content?: Verbete[];
   last: boolean;
   totalElements: number;

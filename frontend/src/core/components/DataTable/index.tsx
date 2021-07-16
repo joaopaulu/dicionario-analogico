@@ -1,31 +1,50 @@
-import axios from 'axios';
 import Pagination from 'core/components/Pagination';
-import { VerbetePage } from 'core/types/Verbete';
-import { BASE_URL } from 'core/utils/request';
-import { useEffect, useState } from 'react';
+import { VerbeteResponse } from 'core/types/Verbete';
+import { makeRequest } from 'core/utils/request';
+import { useCallback, useEffect, useState } from 'react';
+import VerbeteFilters from '../VerbeteFilters';
 import './styles.scss';
 
 const DataTable = () => {
+  const [verbeteResponse, setVerbeteResponse] = useState<VerbeteResponse>();
+  const [isLoading, setIsLoading] = useState(false);
   const [activePage, setActivePage] = useState(0);
-  const [page, setPage] = useState<VerbetePage>({
-    first: true,
-    last: true,
-    number: 0,
-    totalElements: 0,
-    totalPages: 0,
-  });
+  const [descricao, setDescricao] = useState('');
+
+  const getVerbetes = useCallback(() => {
+    const params = {
+      page: activePage,
+      linesPerPage: 12,
+      descricao,
+    };
+    setIsLoading(true);
+    makeRequest({ url: '/verbetes', params })
+      .then(response => setVerbeteResponse(response.data))
+      .finally(() => setIsLoading(false));
+  }, [activePage, descricao]);
 
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}/verbetes?page=${activePage}&size=20&sort=date,desc`)
-      .then(response => {
-        setPage(response.data);
-      });
-  }, [activePage]);
+    getVerbetes();
+  }, [getVerbetes]);
+
+  const handleChangeDescricao = (name: string) => {
+    setActivePage(0);
+    setDescricao(descricao);
+  };
+
+  const clearFilters = () => {
+    setActivePage(0);
+    setDescricao('');
+  };
 
   return (
     <>
       <div className="table-responsive">
+        <VerbeteFilters
+          descricao={descricao}
+          handleChangeDescricao={handleChangeDescricao}
+          clearFilters={clearFilters}
+        />
         <table className="table table-striped table-sm">
           <thead>
             <tr>
@@ -33,22 +52,24 @@ const DataTable = () => {
             </tr>
           </thead>
           <tbody>
-            {page.content?.map(item => (
-              <tr key={item.id}>
+            {verbeteResponse?.content?.map(verbete => (
+              <tr key={verbete.id}>
                 <td>
-                  <span className="verbete-title">{item.descricao}</span>{' '}
-                  {item.separacaoSilabica} {item.genero}
-                  {item.definicao}
+                  <span className="verbete-title">{verbete.descricao}</span>{' '}
+                  {verbete.separacaoSilabica} {verbete.genero}
+                  {verbete.definicao}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <Pagination
-        totalPages={page.totalPages}
-        onChange={page => setActivePage(page)}
-      />
+      {verbeteResponse && (
+        <Pagination
+          totalPages={verbeteResponse.totalPages}
+          onChange={page => setActivePage(page)}
+        />
+      )}
     </>
   );
 };
