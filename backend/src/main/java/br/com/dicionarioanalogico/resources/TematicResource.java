@@ -5,6 +5,8 @@ import br.com.dicionarioanalogico.services.TematicService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -22,8 +24,8 @@ public class TematicResource {
 
     @GetMapping
     @ApiOperation("Busca todos os Campos Temáticos")
-    public ResponseEntity<List<TematicDTO>> findAll(){
-        List<TematicDTO> list = service.findAll();
+    public ResponseEntity<Page<TematicDTO>> findAll(Pageable pageable) {
+        Page<TematicDTO> list = service.findAllPaged(pageable);
         return ResponseEntity.ok().body(list);
     }
 
