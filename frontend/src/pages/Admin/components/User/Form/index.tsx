@@ -9,8 +9,7 @@ import BaseForm from '../../BaseForm';
 import './styles.scss';
 
 export type FormState = {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   password: string;
   repassword: string;
@@ -37,8 +36,7 @@ const Form = () => {
   useEffect(() => {
     if (isEditing) {
       makePrivateRequest({ url: `/users/${userId}` }).then(response => {
-        setValue('firstName', response.data.firstName);
-        setValue('lastName', response.data.lastName);
+        setValue('name', response.data.name);
         setValue('email', response.data.email);
         setValue('password', response.data.password);
         setValue('repassword', response.data.password);
@@ -88,28 +86,18 @@ const Form = () => {
                   },
                 })}
                 type="text"
-                name="firstName"
+                name="name"
                 className="form-control input-base"
                 placeholder="Nome"
               />
-              {errors.firstName && (
+              {errors.name && (
                 <div className="invalid-feedback d-block">
-                  {errors.firstName.message}
+                  {errors.name.message}
                 </div>
               )}
             </div>
           </div>
-          <div className="col-6">
-            <div className="input-bt30">
-              <input
-                ref={register}
-                type="text"
-                name="lastName"
-                className="form-control input-base"
-                placeholder="Sobrenome"
-              />
-            </div>
-          </div>
+
           <div className="col-6">
             <div className="input-bt30">
               <input

@@ -11,8 +11,7 @@ export type Roles = {
 export type User = {
   id: number;
   email: string;
-  firstName: string;
-  lastName: string;
+  name: string;
   password: string;
   roles: Roles[];
 };
