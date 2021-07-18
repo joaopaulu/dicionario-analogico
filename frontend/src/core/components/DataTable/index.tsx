@@ -14,7 +14,7 @@ const DataTable = () => {
   const getVerbetes = useCallback(() => {
     const params = {
       page: activePage,
-      linesPerPage: 12,
+      linesPerPage: 6,
       descricao,
     };
     setIsLoading(true);
@@ -46,11 +46,6 @@ const DataTable = () => {
           clearFilters={clearFilters}
         />
         <table className="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th>Verbete</th>
-            </tr>
-          </thead>
           <tbody>
             {verbeteResponse?.content?.map(verbete => (
               <tr key={verbete.id}>

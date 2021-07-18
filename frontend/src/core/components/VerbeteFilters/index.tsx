@@ -17,7 +17,7 @@ const VerbeteFilters = ({
       <div className="input-search">
         <input
           type="text"
-          value="aca"
+          value={descricao}
           className="form-control"
           placeholder="Pesquisar verbete"
           onChange={event => handleChangeDescricao(event.target.value)}
