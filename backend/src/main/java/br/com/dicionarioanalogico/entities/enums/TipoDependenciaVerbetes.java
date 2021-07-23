@@ -1,29 +1,35 @@
 package br.com.dicionarioanalogico.entities.enums;
 
 public enum TipoDependenciaVerbetes {
-     hip,
-     mer,
-     con1,
-     con2,
-     con3,
-     con4,
-     con5,
-     con6,
-     Verbo,
-     sin,
-     con7,
-     con8,
-     con9,
-     con10,
-     con11,
-     con12,
-     con13,
-     con14,
-     con15,
-     con16,
-     con17,
-     con18,
-     con19,
-     con20
+     hip("1"),
+     mer("2"),
+     con1("3"),
+     con2("4"),
+     con3("5"),
+     con4("6"),
+     con5("7"),
+     con6("8"),
+     Verbo("9"),
+     sin("10"),
+     con7("11"),
+     con8("12"),
+     con9("13"),
+     con10("14"),
+     con11("15"),
+     con12("16"),
+     con13("17"),
+     con14("18"),
+     con15("19"),
+     con16("20"),
+     con17("21"),
+     con18("22"),
+     con19("23"),
+     con20("24");
+
+     private String label;
+
+     private TipoDependenciaVerbetes(String label) {
+          this.label = label;
+     }
 
 }
