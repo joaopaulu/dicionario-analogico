@@ -1,6 +1,7 @@
 package br.com.dicionarioanalogico.dto;
 
 import br.com.dicionarioanalogico.entities.Verbet;
+import br.com.dicionarioanalogico.entities.enums.TipoDependenciaVerbetes;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -31,7 +32,7 @@ public class VerbetDTO implements Serializable {
     private LocalDate data;
     private String ilustracao;
     private Long dependente;
-    private Long tipoDependencia;
+    private TipoDependenciaVerbetes tipoDependencia;
     private String equiEspanhol;
     private String equiFrances;
     private String equiIngles;
@@ -44,7 +45,7 @@ public class VerbetDTO implements Serializable {
     public VerbetDTO() {
     }
 
-    public VerbetDTO(Long id, String descricao, String separacaoSilabica, String pronuncia, String genero, String transitividadeVerbal, String variantes, String definicao, String fonteDefinicao, String abvFonteContexto, String notas, String fonteNota, String autor, String abvAutor, String fraseologia, LocalDate data, String ilustracao, Long dependente, Long tipoDependencia, String equiEspanhol, String equiFrances, String equiIngles, String equiItaliano, String equiJapones, String equiLibras, List<TematicDTO> tematics) {
+    public VerbetDTO(Long id, String descricao, String separacaoSilabica, String pronuncia, String genero, String transitividadeVerbal, String variantes, String definicao, String fonteDefinicao, String abvFonteContexto, String notas, String fonteNota, String autor, String abvAutor, String fraseologia, LocalDate data, String ilustracao, Long dependente, TipoDependenciaVerbetes tipoDependencia, String equiEspanhol, String equiFrances, String equiIngles, String equiItaliano, String equiJapones, String equiLibras, List<TematicDTO> tematics) {
         this.id = id;
         this.descricao = descricao;
         this.separacaoSilabica = separacaoSilabica;
