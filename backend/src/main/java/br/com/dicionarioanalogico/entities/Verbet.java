@@ -7,7 +7,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -69,9 +71,8 @@ public class Verbet implements Serializable {
 
     private String equiLibras;
 
-    @OneToMany
-    @JoinColumn(name = "campo_tematico_id")
-    Set<Tematic> tematics = new HashSet<>();
+    @OneToMany(mappedBy = "verbets")
+    private List<Tematic> tematics = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id_created")
@@ -124,7 +125,6 @@ public class Verbet implements Serializable {
         this.equiItaliano = equiItaliano;
         this.equiJapones = equiJapones;
         this.equiLibras = equiLibras;
-        this.tematics = tematics;
         this.userCreated = userCreated;
         this.userModified = userModified;
         this.categories = categories;
@@ -332,11 +332,11 @@ public class Verbet implements Serializable {
         this.equiLibras = equiLibras;
     }
 
-    public Set<Tematic> getTematics() {
+    public List<Tematic> getTematics() {
         return tematics;
     }
 
-    public void setTematics(Set<Tematic> tematics) {
+    public void setTematics(List<Tematic> tematics) {
         this.tematics = tematics;
     }
 
