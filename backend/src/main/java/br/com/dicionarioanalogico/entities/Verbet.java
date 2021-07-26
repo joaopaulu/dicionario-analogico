@@ -71,8 +71,9 @@ public class Verbet implements Serializable {
 
     private String equiLibras;
 
-    @OneToMany(mappedBy = "verbets")
-    private List<Tematic> tematics = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "campo_tematico_id")
+    private Tematic campoTematico;
 
     @ManyToOne
     @JoinColumn(name = "user_id_created")
@@ -330,18 +331,6 @@ public class Verbet implements Serializable {
 
     public void setEquiLibras(String equiLibras) {
         this.equiLibras = equiLibras;
-    }
-
-    public List<Tematic> getTematics() {
-        return tematics;
-    }
-
-    public void setTematics(List<Tematic> tematics) {
-        this.tematics = tematics;
-    }
-
-    public User getUserCreated() {
-        return userCreated;
     }
 
     public void setUserCreated(User userCreated) {
