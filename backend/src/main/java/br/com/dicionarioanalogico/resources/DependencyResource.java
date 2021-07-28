@@ -1,6 +1,8 @@
 package br.com.dicionarioanalogico.resources;
 
+import br.com.dicionarioanalogico.dto.DependencyDTO;
 import br.com.dicionarioanalogico.dto.VerbetDTO;
+import br.com.dicionarioanalogico.services.DependencyService;
 import br.com.dicionarioanalogico.services.VerbetService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,32 +16,31 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping(value = "/dependencies")
 @Api(tags = "dependencies")
 public class DependencyResource {
 
     @Autowired
-    private VerbetService service;
+    private DependencyService service;
 
     @GetMapping
     @ApiOperation("Busca todos os dependencies")
-    public ResponseEntity<Page<VerbetDTO>> findAll(Pageable pageable) {
-        Page<VerbetDTO> list = service.findAllPaged(pageable);
+    public ResponseEntity<Page<DependencyDTO>> findAll(Pageable pageable) {
+        Page<DependencyDTO> list = service.findAllPaged(pageable);
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "{id}")
     @ApiOperation("Busca um Verbete por ID")
-    public ResponseEntity<VerbetDTO> findById(@PathVariable Long id){
-        VerbetDTO dto = service.findById(id);
+    public ResponseEntity<DependencyDTO> findById(@PathVariable Long id){
+        DependencyDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping
     @ApiOperation("Insere um novo Verbete")
-    public ResponseEntity<VerbetDTO> insert(@RequestBody VerbetDTO dto){
+    public ResponseEntity<DependencyDTO> insert(@RequestBody DependencyDTO dto){
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
@@ -48,14 +49,14 @@ public class DependencyResource {
 
     @PutMapping(value = "{id}")
     @ApiOperation("Atualiza um Verbete")
-    public ResponseEntity<VerbetDTO> update(@PathVariable Long id, @RequestBody VerbetDTO dto){
+    public ResponseEntity<DependencyDTO> update(@PathVariable Long id, @RequestBody DependencyDTO dto){
         dto = service.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping(value = "{id}")
     @ApiOperation("Deleta um Verbete")
-    public ResponseEntity<VerbetDTO> delete(@PathVariable Long id){
+    public ResponseEntity<DependencyDTO> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
