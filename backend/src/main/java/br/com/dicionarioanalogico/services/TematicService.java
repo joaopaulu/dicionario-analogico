@@ -1,7 +1,9 @@
 package br.com.dicionarioanalogico.services;
 
+import br.com.dicionarioanalogico.config.Mapper;
 import br.com.dicionarioanalogico.dto.TematicDTO;
 import br.com.dicionarioanalogico.entities.Tematic;
+import br.com.dicionarioanalogico.mappers.TematicMapper;
 import br.com.dicionarioanalogico.repositories.TematicRepository;
 import br.com.dicionarioanalogico.services.exceptions.DatabaseException;
 import br.com.dicionarioanalogico.services.exceptions.ResourceNotFoundException;
@@ -9,14 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class TematicService {
@@ -27,31 +28,30 @@ public class TematicService {
     @Transactional(readOnly = true)
     public Page<TematicDTO> findAllPaged(Pageable pageable) {
         Page<Tematic> list = repository.findAll(pageable);
-        return list.map(TematicDTO::new);
+        var listConvert = Mapper.factory(TematicMapper.class).entityToDtoList(list.toList());
+        return new PageImpl<TematicDTO>(listConvert, list.getPageable(), list.getTotalElements());
     }
 
     @Transactional(readOnly = true)
     public TematicDTO findById(Long id){
         Optional<Tematic> obj = repository.findById(id);
         Tematic entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not Found"));
-        return new TematicDTO(entity);
+        return Mapper.factory(TematicMapper.class).entityToDto(entity);
     }
 
     @Transactional
     public TematicDTO insert(TematicDTO dto){
-        Tematic entity = new Tematic();
-        copyDtoEntity(dto, entity);
+        Tematic entity = Mapper.factory(TematicMapper.class).dtoToEntity(dto);
         entity = repository.save(entity);
-        return new TematicDTO(entity);
+        return Mapper.factory(TematicMapper.class).entityToDto(entity);
     }
 
     @Transactional
     public TematicDTO update(Long id, TematicDTO dto){
         try {
-            Tematic entity = repository.getOne(id);
-            copyDtoEntity(dto, entity);
+            Tematic entity = Mapper.factory(TematicMapper.class).dtoToEntity(dto);
             entity = repository.save(entity);
-            return new TematicDTO(entity);
+            return Mapper.factory(TematicMapper.class).entityToDto(entity);
         }catch (EntityNotFoundException e){
             throw new ResourceNotFoundException("Id not found " + id);
         }
@@ -67,11 +67,4 @@ public class TematicService {
         }
     }
 
-    private void copyDtoEntity(TematicDTO dto, Tematic entity) {
-        entity.setNome(dto.getNome());
-        entity.setDescricao(dto.getDescricao());
-        entity.setInformacao_gramatical(dto.getInformacao_gramatical());
-        entity.setTipo_dependencia(dto.getTipo_dependencia());
-        entity.setGenero(dto.getGenero());
-    }
 }

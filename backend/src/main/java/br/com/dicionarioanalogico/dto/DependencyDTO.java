@@ -7,14 +7,11 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class TematicDTO implements Serializable {
+public class DependencyDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
-    private String nome;
+    private String sigla;
     private String descricao;
-    private String informacao_gramatical;
-    private DependencyDTO tipo_dependencia;
-    private String genero;
 
 }

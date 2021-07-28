@@ -1,9 +1,13 @@
 package br.com.dicionarioanalogico.services;
 
 import br.com.dicionarioanalogico.config.Mapper;
+import br.com.dicionarioanalogico.dto.DependencyDTO;
 import br.com.dicionarioanalogico.dto.VerbetDTO;
+import br.com.dicionarioanalogico.entities.Dependency;
 import br.com.dicionarioanalogico.entities.Verbet;
+import br.com.dicionarioanalogico.mappers.DependencyMapper;
 import br.com.dicionarioanalogico.mappers.VerbetMapper;
+import br.com.dicionarioanalogico.repositories.DependencyRepository;
 import br.com.dicionarioanalogico.repositories.VerbetRepository;
 import br.com.dicionarioanalogico.services.exceptions.DatabaseException;
 import br.com.dicionarioanalogico.services.exceptions.ResourceNotFoundException;
@@ -22,38 +26,38 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class VerbetService {
+public class DependencyService {
 
     @Autowired
-    private VerbetRepository repository;
+    private DependencyRepository repository;
 
     @Transactional(readOnly = true)
-    public Page<VerbetDTO> findAllPaged(Pageable pageable){
-        Page<Verbet> list = repository.findAll(pageable);
-        var listConvert = Mapper.factory(VerbetMapper.class).entityToDtoList(list.toList());
-        return new PageImpl<VerbetDTO>(listConvert, list.getPageable(), list.getTotalElements());
+    public Page<DependencyDTO> findAllPaged(Pageable pageable){
+        Page<Dependency> list = repository.findAll(pageable);
+        var listConvert = Mapper.factory(DependencyMapper.class).entityToDtoList(list.toList());
+        return new PageImpl<DependencyDTO>(listConvert, list.getPageable(), list.getTotalElements());
     }
 
     @Transactional(readOnly = true)
-    public VerbetDTO findById(Long id) {
-        Optional<Verbet> obj = repository.findById(id);
-        Verbet entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
-        return Mapper.factory(VerbetMapper.class).entityToDto(entity);
+    public DependencyDTO findById(Long id) {
+        Optional<Dependency> obj = repository.findById(id);
+        Dependency entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+        return Mapper.factory(DependencyMapper.class).entityToDto(entity);
     }
 
     @Transactional
-    public VerbetDTO insert(VerbetDTO dto) {
-        Verbet entity = Mapper.factory(VerbetMapper.class).dtoToEntity(dto);
+    public DependencyDTO insert(DependencyDTO dto) {
+        Dependency entity = Mapper.factory(DependencyMapper.class).dtoToEntity(dto);
         entity = repository.save(entity);
-        return Mapper.factory(VerbetMapper.class).entityToDto(entity);
+        return Mapper.factory(DependencyMapper.class).entityToDto(entity);
     }
 
     @Transactional
-    public VerbetDTO update(Long id, VerbetDTO dto) {
+    public DependencyDTO update(Long id, DependencyDTO dto) {
         try {
-            Verbet entity = Mapper.factory(VerbetMapper.class).dtoToEntity(dto);
+            Dependency entity = Mapper.factory(DependencyMapper.class).dtoToEntity(dto);
             entity = repository.save(entity);
-            return Mapper.factory(VerbetMapper.class).entityToDto(entity);
+            return Mapper.factory(DependencyMapper.class).entityToDto(entity);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException("Id não encontrado " + id);
         }

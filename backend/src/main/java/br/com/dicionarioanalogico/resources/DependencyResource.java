@@ -16,15 +16,15 @@ import java.net.URI;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(value = "/verbetes")
-@Api(tags = "Verbetes")
-public class VerbetResource {
+@RequestMapping(value = "/dependencies")
+@Api(tags = "dependencies")
+public class DependencyResource {
 
     @Autowired
     private VerbetService service;
 
     @GetMapping
-    @ApiOperation("Busca todos os Verbetes")
+    @ApiOperation("Busca todos os dependencies")
     public ResponseEntity<Page<VerbetDTO>> findAll(Pageable pageable) {
         Page<VerbetDTO> list = service.findAllPaged(pageable);
         return ResponseEntity.ok().body(list);
