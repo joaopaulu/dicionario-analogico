@@ -11,8 +11,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @Entity
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "campos_tematicos")
 public class Tematic implements Serializable {
     private static final long serialVersionUID = 1L;

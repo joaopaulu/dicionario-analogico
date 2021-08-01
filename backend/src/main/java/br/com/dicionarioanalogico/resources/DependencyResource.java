@@ -1,9 +1,12 @@
 package br.com.dicionarioanalogico.resources;
 
 import br.com.dicionarioanalogico.dto.DependencyDTO;
+import br.com.dicionarioanalogico.entities.Dependency;
+import br.com.dicionarioanalogico.repositories.DependencyRepository;
 import br.com.dicionarioanalogico.services.DependencyService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping(value = "/dependencies")
 @Api(tags = "dependencies")
@@ -21,12 +26,18 @@ public class DependencyResource {
     @Autowired
     private DependencyService service;
 
+    @Autowired
+    private DependencyRepository repository;
+
     @GetMapping
     @ApiOperation("Busca todos os dependencies")
     public ResponseEntity<Page<DependencyDTO>> findAll(Pageable pageable) {
         Page<DependencyDTO> list = service.findAllPaged(pageable);
         return ResponseEntity.ok().body(list);
     }
+    /*public List<Dependency> listar(){
+        return repository.findAll();
+    }*/
 
     @GetMapping(value = "{id}")
     @ApiOperation("Busca um Dependencia por ID")
