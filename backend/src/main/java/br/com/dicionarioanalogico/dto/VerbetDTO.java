@@ -13,6 +13,7 @@ public class VerbetDTO implements Serializable {
 
     private Long id;
     private String descricao;
+
     private String separacaoSilabica;
     private String pronuncia;
     private String genero;
