@@ -1,6 +1,7 @@
 import PrivateRoute from 'core/components/Routes/PrivateRoute';
 import { Switch } from 'react-router-dom';
 import Categories from './components/Category';
+import Dependency from './components/Dependency';
 import HomeAdmin from './components/Home';
 import NavbarAdmin from './components/NavbarAdmin';
 import Tematics from './components/Tematic';
@@ -23,6 +24,9 @@ const Admin = () => (
         </PrivateRoute>
         <PrivateRoute path="/admin/tematics" allowedRoutes={['ROLE_ADMIN']}>
           <Tematics />
+        </PrivateRoute>
+        <PrivateRoute path="/admin/dependencies" allowedRoutes={['ROLE_ADMIN']}>
+          <Dependency />
         </PrivateRoute>
       </Switch>
     </div>

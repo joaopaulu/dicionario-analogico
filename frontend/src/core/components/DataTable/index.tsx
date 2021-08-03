@@ -16,6 +16,7 @@ const DataTable = () => {
     const params = {
       page: activePage,
       size: 12,
+      direction: 'ASC',
       descricao,
     };
     setIsLoading(true);
