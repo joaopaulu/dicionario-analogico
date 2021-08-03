@@ -28,7 +28,7 @@ public class Tematic implements Serializable {
 
     private String descricao;
 
-    private String informacao_gramatical;
+    private String informacaoGramatical;
 
     private String genero;
 

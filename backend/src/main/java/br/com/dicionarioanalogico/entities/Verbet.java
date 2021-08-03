@@ -16,7 +16,7 @@ import java.util.Set;
 @Setter
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name="verbetes")
+@Table(name = "verbetes")
 public class Verbet implements Serializable {
     public static final long serialVersionUID = 1L;
 
@@ -27,51 +27,51 @@ public class Verbet implements Serializable {
 
     private String descricao;
 
-        private String separacaoSilabica;
+    private String separacaoSilabica;
 
-        private String pronuncia;
+    private String pronuncia;
 
-        private String genero;
+    private String genero;
 
-        private String transitividadeVerbal;
+    private String transitividadeVerbal;
 
-        private String variantes;
+    private String variantes;
 
-        @Column(columnDefinition = "TEXT")
-        private String definicao;
+    @Column(columnDefinition = "TEXT")
+    private String definicao;
 
-        private String fonteDefinicao;
+    private String fonteDefinicao;
 
-        private String abvFonteContexto;
+    private String abvFonteContexto;
 
-        private String notas;
+    private String notas;
 
-        private String fonteNota;
+    private String fonteNota;
 
-        private String autor;
+    private String autor;
 
-        private String abvAutor;
+    private String abvAutor;
 
-        private String fraseologia;
+    private String fraseologia;
 
-        private LocalDate data;
+    private LocalDate data;
 
-        @Column(columnDefinition = "TEXT")
-        private String ilustracao;
+    @Column(columnDefinition = "TEXT")
+    private String ilustracao;
 
-        private Integer dependente;
+    private Integer dependente;
 
-        private String equiEspanhol;
+    private String equiEspanhol;
 
-        private String equiFrances;
+    private String equiFrances;
 
-        private String equiIngles;
+    private String equiIngles;
 
-        private String equiItaliano;
+    private String equiItaliano;
 
-        private String equiJapones;
+    private String equiJapones;
 
-        private String equiLibras;
+    private String equiLibras;
 
     @ManyToOne
     @JoinColumn(name = "campo_tematico_id", referencedColumnName = "id")
@@ -90,8 +90,8 @@ public class Verbet implements Serializable {
     private User userModified;
 
     @ManyToMany
-    @JoinTable(name="categorias_has_verbetes",
-            joinColumns = @JoinColumn(name= "verbete_id"),
+    @JoinTable(name = "categorias_has_verbetes",
+            joinColumns = @JoinColumn(name = "verbete_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_gramatical_id"))
     Set<Category> categories = new HashSet<>();
 

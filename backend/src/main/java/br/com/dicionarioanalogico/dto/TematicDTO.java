@@ -13,8 +13,8 @@ public class TematicDTO implements Serializable {
     private Long id;
     private String nome;
     private String descricao;
-    private String informacao_gramatical;
-    private DependencyDTO tipo_dependencia;
+    private String informacaoGramatical;
+    private DependencyDTO tipoDependencia;
     private String genero;
 
 }
