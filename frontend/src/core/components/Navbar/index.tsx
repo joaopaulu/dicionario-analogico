@@ -1,23 +1,12 @@
 import logo from 'core/assets/images/logo-dicionario.png';
 import { ReactComponent as MenuIcon } from 'core/assets/images/menu.svg';
-import {
-  getAccessTokenDecoded,
-  isAuthenticated,
-  logout,
-} from 'core/utils/auth';
-import React, { useEffect, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { isAuthenticated, logout } from 'core/utils/auth';
+import React, { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import './styles.scss';
 
 const Navbar = () => {
   const [drawerActive, setDrawerActive] = useState(false);
-  const [currentUser, setCurrentUser] = useState('');
-  const location = useLocation();
-
-  useEffect(() => {
-    const currentUserData = getAccessTokenDecoded();
-    setCurrentUser(currentUserData.user_name);
-  }, [location]);
 
   const handleLogout = (
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,

@@ -2,6 +2,7 @@ import Pagination from 'core/components/Pagination';
 import { VerbeteResponse } from 'core/types/Verbete';
 import { makeRequest } from 'core/utils/request';
 import { useCallback, useEffect, useState } from 'react';
+import ListLoader from '../Loaders/ListLoader';
 import VerbeteFilters from '../VerbeteFilters';
 import './styles.scss';
 
@@ -14,7 +15,7 @@ const DataTable = () => {
   const getVerbetes = useCallback(() => {
     const params = {
       page: activePage,
-      linesPerPage: 6,
+      size: 12,
       descricao,
     };
     setIsLoading(true);
@@ -47,15 +48,21 @@ const DataTable = () => {
         />
         <table className="table table-striped table-sm">
           <tbody>
-            {verbeteResponse?.content?.map(verbete => (
-              <tr key={verbete.id}>
-                <td>
-                  <span className="verbete-title">{verbete.descricao}</span>{' '}
-                  {verbete.separacaoSilabica} {verbete.genero}
-                  {verbete.definicao}
-                </td>
-              </tr>
-            ))}
+            {isLoading ? (
+              <ListLoader />
+            ) : (
+              <>
+                {verbeteResponse?.content?.map(verbete => (
+                  <tr key={verbete.id}>
+                    <td>
+                      <span className="verbete-title">{verbete.descricao}</span>{' '}
+                      {verbete.separacaoSilabica} {verbete.genero}
+                      {verbete.definicao}
+                    </td>
+                  </tr>
+                ))}
+              </>
+            )}
           </tbody>
         </table>
       </div>

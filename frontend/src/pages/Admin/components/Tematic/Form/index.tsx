@@ -19,8 +19,7 @@ type ParamsType = {
 };
 
 const Form = () => {
-  const { register, handleSubmit, errors, setValue, control } =
-    useForm<FormState>();
+  const { register, handleSubmit, errors, setValue } = useForm<FormState>();
   const history = useHistory();
   const { tematicId } = useParams<ParamsType>();
 
