@@ -1,2 +1,39 @@
+.container-header {
+    margin-top: 30px;
+    span {
+        margin-right: 3px;
+    }
+    .title-campo-tematico {
+        font-size: 1.7em;
+        color: #172b4d;
+        font-weight: bold;
+    }
+    .title-gramatical {
+        color: #61bd4f;
+        font-weight: bold;
+    }
+    .title-informacao-descricao {
+        font-size: 1.1em;
+    }
+}
 
-
+.container-info {
+    margin-top: 30px;
+    h1 {
+        font-size: 1.5em;
+        color: #00c2e0;
+        font-weight: bold;
+    }
+    .container-verbets {
+        background-color: #ebecf0;
+        padding: 10px;
+        span {
+            margin-right: 3px;
+        }
+        margin-bottom: 10px;
+        .title-tipo-dependencia {
+            color: #00c2e0;
+            font-weight: bold;
+        }
+    }
+}

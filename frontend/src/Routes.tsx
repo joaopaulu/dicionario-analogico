@@ -1,6 +1,7 @@
 import PrivateRoute from 'core/components/Routes/PrivateRoute';
 import Alfabetica from 'pages/Alfabetica';
 import Analogica from 'pages/Analogica';
+import AnalogicaDetails from 'pages/Analogica/Details';
 import Apresentacao from 'pages/Apresentacao';
 import Creditos from 'pages/Creditos';
 import Elaboracao from 'pages/Elaboracao';
@@ -41,6 +42,9 @@ const Routes = () => (
       </Route>
       <Route path="/analogica" exact>
         <Analogica />
+      </Route>
+      <Route path="/analogica/detalhes" exact>
+        <AnalogicaDetails />
       </Route>
       <Route path="/alfabetica" exact>
         <Alfabetica />
