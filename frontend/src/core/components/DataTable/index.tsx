@@ -1,5 +1,5 @@
 import Pagination from 'core/components/Pagination';
-import { VerbeteResponse } from 'core/types/Verbete';
+import { VerbetResponse } from 'core/types/Verbet';
 import { makeRequest } from 'core/utils/request';
 import { useCallback, useEffect, useState } from 'react';
 import ListLoader from '../Loaders/ListLoader';
@@ -7,7 +7,7 @@ import VerbeteFilters from '../VerbeteFilters';
 import './styles.scss';
 
 const DataTable = () => {
-  const [verbeteResponse, setVerbeteResponse] = useState<VerbeteResponse>();
+  const [verbetResponse, setVerbetResponse] = useState<VerbetResponse>();
   const [isLoading, setIsLoading] = useState(false);
   const [activePage, setActivePage] = useState(0);
   const [descricao, setDescricao] = useState('');
@@ -21,7 +21,7 @@ const DataTable = () => {
     };
     setIsLoading(true);
     makeRequest({ url: '/verbetes', params })
-      .then(response => setVerbeteResponse(response.data))
+      .then(response => setVerbetResponse(response.data))
       .finally(() => setIsLoading(false));
   }, [activePage, descricao]);
 
@@ -53,7 +53,7 @@ const DataTable = () => {
               <ListLoader />
             ) : (
               <>
-                {verbeteResponse?.content?.map(verbete => (
+                {verbetResponse?.content?.map(verbete => (
                   <tr key={verbete.id}>
                     <td>
                       <span className="verbete-title">{verbete.descricao}</span>{' '}
@@ -67,9 +67,9 @@ const DataTable = () => {
           </tbody>
         </table>
       </div>
-      {verbeteResponse && (
+      {verbetResponse && (
         <Pagination
-          totalPages={verbeteResponse.totalPages}
+          totalPages={verbetResponse.totalPages}
           onChange={page => setActivePage(page)}
         />
       )}

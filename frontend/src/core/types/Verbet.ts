@@ -1,5 +1,5 @@
-export type VerbeteResponse = {
-  content?: Verbete[];
+export type VerbetResponse = {
+  content: Verbet[];
   last: boolean;
   totalElements: number;
   totalPages: number;
@@ -10,7 +10,7 @@ export type VerbeteResponse = {
   empty?: boolean;
 };
 
-export type Verbete = {
+export type Verbet = {
   id: number;
   descricao: string;
   separacaoSilabica: string;

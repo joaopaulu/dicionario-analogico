@@ -6,6 +6,7 @@ import HomeAdmin from './components/Home';
 import NavbarAdmin from './components/NavbarAdmin';
 import Tematics from './components/Tematic';
 import Users from './components/User';
+import Verbets from './components/Verbets';
 import './styles.scss';
 
 const Admin = () => (
@@ -24,6 +25,9 @@ const Admin = () => (
         </PrivateRoute>
         <PrivateRoute path="/admin/tematics" allowedRoutes={['ROLE_ADMIN']}>
           <Tematics />
+        </PrivateRoute>
+        <PrivateRoute path="/admin/verbets" allowedRoutes={['ROLE_ADMIN']}>
+          <Verbets />
         </PrivateRoute>
         <PrivateRoute path="/admin/dependencies" allowedRoutes={['ROLE_ADMIN']}>
           <Dependency />

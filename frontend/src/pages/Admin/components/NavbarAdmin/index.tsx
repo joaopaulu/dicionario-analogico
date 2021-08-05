@@ -18,6 +18,9 @@ const NavbarAdmin = () => (
           <NavLink to="/admin/dependencies" className="admin-nav-item">
             Dependências
           </NavLink>
+          <NavLink to="/admin/verbets" className="admin-nav-item">
+            Verbetes
+          </NavLink>
           <NavLink to="/admin/users" className="admin-nav-item">
             Usuários
           </NavLink>
