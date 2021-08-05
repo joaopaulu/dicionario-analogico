@@ -7,48 +7,52 @@ import BaseForm from '../../BaseForm';
 import './styles.scss';
 
 export type FormState = {
-  nome: string;
   descricao: string;
-  informacao_gramatical: string;
-  tipo_dependencia: string;
+  separacaoSilabica: string;
+  pronuncia: string;
   genero: string;
+  transitividadeVerbal: string;
+  variantes: string;
+  definicao: string;
+  fonteDefinicao: string;
 };
 
 type ParamsType = {
-  tematicId: string;
+  verbetId: string;
 };
 
 const Form = () => {
   const { register, handleSubmit, errors, setValue } = useForm<FormState>();
   const history = useHistory();
-  const { tematicId } = useParams<ParamsType>();
+  const { verbetId } = useParams<ParamsType>();
 
-  const isEditing = tematicId !== 'create';
-  const formTitle = isEditing
-    ? 'editar campo temático'
-    : 'cadastrar um campo temático';
+  const isEditing = verbetId !== 'create';
+  const formTitle = isEditing ? 'editar verbete' : 'cadastrar um verbete';
 
   useEffect(() => {
     if (isEditing) {
-      makePrivateRequest({ url: `/tematics/${tematicId}` }).then(response => {
-        setValue('nome', response.data.nome);
+      makePrivateRequest({ url: `/verbetes/${verbetId}` }).then(response => {
         setValue('descricao', response.data.descricao);
-        setValue('informacao_gramatical', response.data.informacao_gramatical);
-        setValue('tipo_dependencia', response.data.tipo_dependencia);
+        setValue('separacaoSilabica', response.data.separacaoSilabica);
+        setValue('pronuncia', response.data.pronuncia);
         setValue('genero', response.data.genero);
+        setValue('transitividadeVerbal', response.data.transitividadeVerbal);
+        setValue('variantes', response.data.variantes);
+        setValue('definicao', response.data.definicao);
+        setValue('fonteDefinicao', response.data.fonteDefinicao);
       });
     }
-  }, [tematicId, isEditing, setValue]);
+  }, [verbetId, isEditing, setValue]);
 
   const onSubmit = (data: FormState) => {
     makePrivateRequest({
-      url: isEditing ? `/tematics/${tematicId}` : '/tematics',
+      url: isEditing ? `/verbetes/${verbetId}` : '/verbetes',
       method: isEditing ? 'PUT' : 'POST',
       data,
     })
       .then(() => {
         toast.info('Registro salvo com sucesso!');
-        history.push('/admin/users');
+        history.push('/admin/verbets');
       })
       .catch(() => {
         toast.error('Erro ao salvar registro!');
@@ -74,13 +78,13 @@ const Form = () => {
                   },
                 })}
                 type="text"
-                name="nome"
+                name="descricao"
                 className="form-control input-base"
-                placeholder="Nome"
+                placeholder="Descrição"
               />
-              {errors.nome && (
+              {errors.descricao && (
                 <div className="invalid-feedback d-block">
-                  {errors.nome.message}
+                  {errors.descricao.message}
                 </div>
               )}
             </div>
@@ -99,10 +103,54 @@ const Form = () => {
                     message: 'O campo deve ter no máximo 60 caracteres',
                   },
                 })}
-                type="genero"
+                type="text"
+                name="separacaoSilabica"
+                className="form-control input-base"
+                placeholder="Separação Silábica"
+              />
+              {errors.separacaoSilabica && (
+                <div className="invalid-feedback d-block">
+                  {errors.separacaoSilabica.message}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="col-6">
+            <div className="input-bt30">
+              <input
+                type="text"
+                name="pronuncia"
+                className="form-control input-base"
+                placeholder="Pronuncia"
+                ref={register({
+                  required: 'Campo obrigatório',
+                  minLength: {
+                    value: 8,
+                    message: 'O campo deve ter no mínimo 8 caracteres',
+                  },
+                })}
+              />
+              {errors.pronuncia && (
+                <div className="invalid-feedback d-block">
+                  {errors.pronuncia.message}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="col-6">
+            <div className="input-bt30">
+              <input
+                type="text"
                 name="genero"
                 className="form-control input-base"
                 placeholder="Gênero"
+                ref={register({
+                  required: 'Campo obrigatório',
+                  minLength: {
+                    value: 8,
+                    message: 'O campo deve ter no mínimo 8 caracteres',
+                  },
+                })}
               />
               {errors.genero && (
                 <div className="invalid-feedback d-block">
@@ -115,9 +163,9 @@ const Form = () => {
             <div className="input-bt30">
               <input
                 type="text"
-                name="informacao_gramatical"
+                name="transitividadeVerbal"
                 className="form-control input-base"
-                placeholder="Informação Gramatical"
+                placeholder="Transitividade Verbal"
                 ref={register({
                   required: 'Campo obrigatório',
                   minLength: {
@@ -126,9 +174,9 @@ const Form = () => {
                   },
                 })}
               />
-              {errors.informacao_gramatical && (
+              {errors.transitividadeVerbal && (
                 <div className="invalid-feedback d-block">
-                  {errors.informacao_gramatical.message}
+                  {errors.transitividadeVerbal.message}
                 </div>
               )}
             </div>
@@ -137,9 +185,9 @@ const Form = () => {
             <div className="input-bt30">
               <input
                 type="text"
-                name="tipo_dependencia"
+                name="fonteDefinicao"
                 className="form-control input-base"
-                placeholder="Tipo Dependência"
+                placeholder="Fonte de Definição"
                 ref={register({
                   required: 'Campo obrigatório',
                   minLength: {
@@ -148,9 +196,31 @@ const Form = () => {
                   },
                 })}
               />
-              {errors.tipo_dependencia && (
+              {errors.fonteDefinicao && (
                 <div className="invalid-feedback d-block">
-                  {errors.tipo_dependencia.message}
+                  {errors.fonteDefinicao.message}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="col-6">
+            <div className="input-bt30">
+              <input
+                type="text"
+                name="variantes"
+                className="form-control input-base"
+                placeholder="Variantes"
+                ref={register({
+                  required: 'Campo obrigatório',
+                  minLength: {
+                    value: 8,
+                    message: 'O campo deve ter no mínimo 8 caracteres',
+                  },
+                })}
+              />
+              {errors.variantes && (
+                <div className="invalid-feedback d-block">
+                  {errors.variantes.message}
                 </div>
               )}
             </div>
@@ -165,17 +235,17 @@ const Form = () => {
                     message: 'O campo deve ter no mínimo 5 caracteres',
                   },
                   maxLength: {
-                    value: 60,
-                    message: 'O campo deve ter no máximo 60 caracteres',
+                    value: 5000,
+                    message: 'O campo deve ter no máximo 5000 caracteres',
                   },
                 })}
-                name="descricao"
+                name="definicao"
                 className="form-control input-base"
-                placeholder="Descrição"
+                placeholder="Definição"
               />
-              {errors.descricao && (
+              {errors.definicao && (
                 <div className="invalid-feedback d-block">
-                  {errors.descricao.message}
+                  {errors.definicao.message}
                 </div>
               )}
             </div>
