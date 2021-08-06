@@ -3,6 +3,7 @@ import Alfabetica from 'pages/Alfabetica';
 import Analogica from 'pages/Analogica';
 import AnalogicaDetails from 'pages/Analogica/Details';
 import Apresentacao from 'pages/Apresentacao';
+import Contato from 'pages/Contato';
 import Creditos from 'pages/Creditos';
 import Elaboracao from 'pages/Elaboracao';
 import Guia from 'pages/Guia';
@@ -48,6 +49,9 @@ const Routes = () => (
       </Route>
       <Route path="/alfabetica" exact>
         <Alfabetica />
+      </Route>
+      <Route path="/contato" exact>
+        <Contato />
       </Route>
       <Redirect from="/auth" to="/auth/login" exact />
       <Route path="/auth">
