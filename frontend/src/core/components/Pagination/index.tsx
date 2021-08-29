@@ -3,11 +3,13 @@ import ReactPaginate from 'react-paginate';
 import './styles.scss';
 
 type Props = {
+  forcePage?: number;
   totalPages: number;
+  range: number;
   onChange: (item: number) => void;
 };
 
-const Pagination = ({ totalPages, onChange }: Props) => {
+const Pagination = ({ forcePage, totalPages, range, onChange }: Props) => {
   const renderIcon = (type: 'previous' | 'next') => (
     <ArrowIcon className={`pagination-${type}`} />
   );
@@ -16,6 +18,7 @@ const Pagination = ({ totalPages, onChange }: Props) => {
     <div className="pagination-container">
       {totalPages > 1 && (
         <ReactPaginate
+          forcePage={forcePage}
           pageCount={totalPages}
           pageRangeDisplayed={5}
           marginPagesDisplayed={1}

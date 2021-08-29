@@ -1,78 +1,84 @@
+import { AxiosRequestConfig } from 'axios';
 import Pagination from 'core/components/Pagination';
-import { VerbetResponse } from 'core/types/Verbet';
-import { makeRequest } from 'core/utils/request';
+import { SpringPage } from 'core/types/vendor/spring';
+import { Verbet } from 'core/types/Verbet';
+import { requestBackend } from 'core/utils/request';
 import { useCallback, useEffect, useState } from 'react';
-import ListLoader from '../Loaders/ListLoader';
-import VerbeteFilters from '../VerbeteFilters';
+import VerbeteFilters, { VerbeteFilterData } from '../VerbeteFilters';
 import './styles.scss';
 
+type ControlComponentsData = {
+  activePage: number;
+  filterData: VerbeteFilterData;
+};
+
 const DataTable = () => {
-  const [verbetResponse, setVerbetResponse] = useState<VerbetResponse>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [activePage, setActivePage] = useState(0);
-  const [descricao, setDescricao] = useState('');
+  const [page, setPage] = useState<SpringPage<Verbet>>();
+
+  const [controlComponentsData, setControlComponentsData] =
+    useState<ControlComponentsData>({
+      activePage: 0,
+      filterData: { descricao: '' },
+    });
+
+  const handlePageChange = (pageNumber: number) => {
+    setControlComponentsData({
+      activePage: pageNumber,
+      filterData: controlComponentsData.filterData,
+    });
+  };
+
+  const handleSubmitFilter = (data: VerbeteFilterData) => {
+    setControlComponentsData({ activePage: 0, filterData: data });
+  };
 
   const getVerbetes = useCallback(() => {
-    const params = {
-      page: activePage,
-      size: 12,
-      direction: 'ASC',
-      descricao,
+    const config: AxiosRequestConfig = {
+      method: 'GET',
+      url: '/verbetes',
+      params: {
+        page: controlComponentsData.activePage,
+        size: 8,
+        descricao: controlComponentsData.filterData.descricao,
+      },
     };
-    setIsLoading(true);
-    makeRequest({ url: '/verbetes', params })
-      .then(response => setVerbetResponse(response.data))
-      .finally(() => setIsLoading(false));
-  }, [activePage, descricao]);
+
+    requestBackend(config).then(response => {
+      setPage(response.data);
+    });
+  }, [controlComponentsData]);
 
   useEffect(() => {
     getVerbetes();
   }, [getVerbetes]);
 
-  const handleChangeDescricao = (name: string) => {
-    setActivePage(0);
-    setDescricao(descricao);
-  };
-
-  const clearFilters = () => {
-    setActivePage(0);
-    setDescricao('');
-  };
-
   return (
     <>
       <div className="table-responsive">
-        <VerbeteFilters
-          descricao={descricao}
-          handleChangeDescricao={handleChangeDescricao}
-          clearFilters={clearFilters}
-        />
+        <VerbeteFilters onSubmitFilter={handleSubmitFilter} />
         <table className="table table-striped table-sm">
           <tbody>
-            {isLoading ? (
-              <ListLoader />
-            ) : (
-              <>
-                {verbetResponse?.content?.map(verbete => (
-                  <tr key={verbete.id}>
-                    <td>
-                      <span className="verbete-title">{verbete.descricao}</span>{' '}
-                      {verbete.separacaoSilabica} {verbete.genero}
-                      {verbete.definicao}
-                    </td>
-                  </tr>
-                ))}
-              </>
-            )}
+            <>
+              {page?.content?.map(verbete => (
+                <tr key={verbete.id}>
+                  <td>
+                    <span className="verbete-title">{verbete.descricao}</span>{' '}
+                    {verbete.separacaoSilabica} {verbete.genero}
+                    {verbete.definicao}
+                  </td>
+                </tr>
+              ))}
+            </>
           </tbody>
         </table>
       </div>
-      {verbetResponse && (
-        <Pagination
-          totalPages={verbetResponse.totalPages}
-          onChange={page => setActivePage(page)}
-        />
-      )}
+
+      <Pagination
+        forcePage={page?.number}
+        totalPages={page ? page.totalPages : 0}
+        range={3}
+        onChange={handlePageChange}
+      />
     </>
   );
 };

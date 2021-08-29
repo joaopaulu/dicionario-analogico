@@ -73,6 +73,7 @@ const List = () => {
           <Pagination
             totalPages={dependecyResponse.totalPages}
             onChange={page => setActivePage(page)}
+            range={3}
           />
         )}
       </div>

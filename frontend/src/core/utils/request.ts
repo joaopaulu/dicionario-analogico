@@ -7,6 +7,17 @@ type LoginData = {
   password: string;
 };
 
+const tokenKey = 'authData';
+
+type LoginResponse = {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  scope: string;
+  userFirstName: string;
+  userId: number;
+};
+
 export const BASE_URL =
   process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
 
@@ -55,4 +66,20 @@ export const makeLogin = (loginData: LoginData) => {
     method: 'POST',
     headers,
   });
+};
+
+export const getAuthData = () => {
+  const str = localStorage.getItem(tokenKey) ?? '{}';
+  return JSON.parse(str) as LoginResponse;
+};
+
+export const requestBackend = (config: AxiosRequestConfig) => {
+  const headers = config.withCredentials
+    ? {
+        ...config.headers,
+        Authorization: 'Bearer ' + getAuthData().access_token,
+      }
+    : config.headers;
+
+  return axios({ ...config, baseURL: BASE_URL, headers });
 };

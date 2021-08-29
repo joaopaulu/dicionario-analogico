@@ -67,6 +67,7 @@ const List = () => {
           <Pagination
             totalPages={verbetResponse.totalPages}
             onChange={page => setActivePage(page)}
+            range={3}
           />
         )}
       </div>
