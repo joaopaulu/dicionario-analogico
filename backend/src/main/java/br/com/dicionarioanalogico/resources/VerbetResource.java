@@ -25,21 +25,23 @@ public class VerbetResource {
 
     @GetMapping
     @ApiOperation("Busca todos os Verbetes")
-    public ResponseEntity<Page<VerbetDTO>> findAll(Pageable pageable) {
-        Page<VerbetDTO> list = service.findAllPaged(pageable);
+    public ResponseEntity<Page<VerbetDTO>> findAll(
+            @RequestParam(value = "descricao", defaultValue = "") String descricao,
+            Pageable pageable) {
+        Page<VerbetDTO> list = service.findAllPaged(descricao.trim(), pageable);
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "{id}")
     @ApiOperation("Busca um Verbete por ID")
-    public ResponseEntity<VerbetDTO> findById(@PathVariable Long id){
+    public ResponseEntity<VerbetDTO> findById(@PathVariable Long id) {
         VerbetDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping
     @ApiOperation("Insere um novo Verbete")
-    public ResponseEntity<VerbetDTO> insert(@RequestBody VerbetDTO dto){
+    public ResponseEntity<VerbetDTO> insert(@RequestBody VerbetDTO dto) {
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
@@ -48,14 +50,14 @@ public class VerbetResource {
 
     @PutMapping(value = "{id}")
     @ApiOperation("Atualiza um Verbete")
-    public ResponseEntity<VerbetDTO> update(@PathVariable Long id, @RequestBody VerbetDTO dto){
+    public ResponseEntity<VerbetDTO> update(@PathVariable Long id, @RequestBody VerbetDTO dto) {
         dto = service.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping(value = "{id}")
     @ApiOperation("Deleta um Verbete")
-    public ResponseEntity<VerbetDTO> delete(@PathVariable Long id){
+    public ResponseEntity<VerbetDTO> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }

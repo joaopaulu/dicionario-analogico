@@ -28,8 +28,8 @@ public class VerbetService {
     private VerbetRepository repository;
 
     @Transactional(readOnly = true)
-    public Page<VerbetDTO> findAllPaged(Pageable pageable){
-        Page<Verbet> list = repository.findAll(pageable);
+    public Page<VerbetDTO> findAllPaged(String descricao, Pageable pageable){
+        Page<Verbet> list = repository.find(descricao, pageable);
         var listConvert = Mapper.factory(VerbetMapper.class).entityToDtoList(list.toList());
         return new PageImpl<VerbetDTO>(listConvert, list.getPageable(), list.getTotalElements());
     }

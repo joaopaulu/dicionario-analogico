@@ -7,8 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface VerbetRepository extends JpaRepository<Verbet, Long> {
-    @Query("SELECT DISTINCT obj FROM Verbet obj  WHERE "
-            + "((:temDescricao = false) or (:temDescricao = true AND LOWER(TRANSLATE(obj.descricao, 'ÁÇÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕËÜáçéíóúàèìòùâêîôûãõëü','ACEIOUAEIOUAEIOUAOEUaceiouaeiouaeiouaoeu')) " +
-            "LIKE LOWER(CONCAT('%', TRANSLATE(:descricao, 'ÁÇÉÍÓÚÀÈÌÒÙÂÊÎÔÛÃÕËÜáçéíóúàèìòùâêîôûãõëü','ACEIOUAEIOUAEIOUAOEUaceiouaeiouaeiouaoeu'),'%')))) ")
-    Page<Verbet> find(String descricao, Boolean temDescricao, Pageable pageable);
+    @Query("SELECT DISTINCT obj FROM Verbet obj WHERE "
+            + "(LOWER(obj.descricao) LIKE LOWER(CONCAT('%',:descricao,'%'))) ")
+    Page<Verbet> find(String descricao, Pageable pageable);
 }
