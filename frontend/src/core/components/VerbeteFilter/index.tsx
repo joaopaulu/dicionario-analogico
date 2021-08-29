@@ -1,7 +1,6 @@
 import { ReactComponent as SearchIcon } from 'core/assets/images/search-icon.svg';
 import { useForm } from 'react-hook-form';
-
-import './styles.scss';
+import './styles.css';
 
 export type VerbeteFilterData = {
   descricao: string;
@@ -19,30 +18,31 @@ const VerbeteFilter = ({ onSubmitFilter }: Props) => {
   };
 
   const handleFormClear = () => {
+    console.log('Limpa filtro');
     setValue('descricao', '');
   };
 
   return (
-    <div className="base-card verbete-filter-container">
-      <form onSubmit={handleSubmit(onSubmit)} className="verbete-filter-form">
-        <div className="verbete-filter-name-container">
+    <div className="base-card product-filter-container">
+      <form onSubmit={handleSubmit(onSubmit)} className="product-filter-form">
+        <div className="product-filter-name-container">
           <input
             {...register('descricao')}
             type="text"
             className="form-control"
-            placeholder="Pesquisa Verbetes"
+            placeholder="Verbete"
             name="descricao"
           />
-          <button className="verbete-filter-search-icon">
+          <button className="product-filter-search-icon">
             <SearchIcon />
           </button>
         </div>
-        <div className="verbete-filter-bottom-container">
+        <div className="product-filter-bottom-container">
           <button
             onClick={handleFormClear}
-            className="btn btn-outline-secondary btn-verbete-filter-clear"
+            className="btn btn-outline-secondary btn-product-filter-clear"
           >
-            LIMPAR<span className="btn-verbete-filter-word"> FILTRO</span>
+            LIMPAR<span className="btn-product-filter-word"> FILTRO</span>
           </button>
         </div>
       </form>

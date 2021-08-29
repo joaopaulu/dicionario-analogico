@@ -4,7 +4,7 @@ import { SpringPage } from 'core/types/vendor/spring';
 import { Verbet } from 'core/types/Verbet';
 import { requestBackend } from 'core/utils/request';
 import { useCallback, useEffect, useState } from 'react';
-import VerbeteFilters, { VerbeteFilterData } from '../VerbeteFilters';
+import VerbeteFilter, { VerbeteFilterData } from '../VerbeteFilter';
 import './styles.scss';
 
 type ControlComponentsData = {
@@ -38,7 +38,7 @@ const DataTable = () => {
       url: '/verbetes',
       params: {
         page: controlComponentsData.activePage,
-        size: 8,
+        size: 6,
         descricao: controlComponentsData.filterData.descricao,
       },
     };
@@ -53,33 +53,30 @@ const DataTable = () => {
   }, [getVerbetes]);
 
   return (
-    <>
-      <div className="table-responsive">
-        <VerbeteFilters onSubmitFilter={handleSubmitFilter} />
-        <table className="table table-striped table-sm">
-          <tbody>
-            <>
-              {page?.content?.map(verbete => (
-                <tr key={verbete.id}>
-                  <td>
-                    <span className="verbete-title">{verbete.descricao}</span>{' '}
-                    {verbete.separacaoSilabica} {verbete.genero}
-                    {verbete.definicao}
-                  </td>
-                </tr>
-              ))}
-            </>
-          </tbody>
-        </table>
-      </div>
-
+    <div className="table-responsive">
+      <VerbeteFilter onSubmitFilter={handleSubmitFilter} />
+      <table className="table table-striped table-sm">
+        <tbody>
+          <>
+            {page?.content?.map(verbete => (
+              <tr key={verbete.id}>
+                <td>
+                  <span className="verbete-title">{verbete.descricao}</span>{' '}
+                  {verbete.separacaoSilabica} {verbete.genero}
+                  {verbete.definicao}
+                </td>
+              </tr>
+            ))}
+          </>
+        </tbody>
+      </table>
       <Pagination
         forcePage={page?.number}
         totalPages={page ? page.totalPages : 0}
         range={3}
         onChange={handlePageChange}
       />
-    </>
+    </div>
   );
 };
 
