@@ -7,13 +7,28 @@ const Navbar = () => {
     <nav className="admin-nav-container">
       <ul className="admin-nav-items-container">
         <li>
-          <NavLink to="/admin/products" className="admin-nav-item">
-            <p>Produtos</p>
+          <NavLink to="/admin/home" className="admin-nav-item">
+            Home
           </NavLink>
         </li>
         <li>
           <NavLink to="/admin/categories" className="admin-nav-item">
-            <p>Categorias</p>
+            Categorias
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/tematics" className="admin-nav-item">
+            Campos Temáticos
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/dependencies" className="admin-nav-item">
+            Dependências
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/admin/verbets" className="admin-nav-item">
+            Verbetes
           </NavLink>
         </li>
         {hasAnyRoles(['ROLE_ADMIN']) && (

@@ -1,0 +1,97 @@
+.category-filter-container {
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.category-filter-name-container {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #E1E1E1;
+    margin-bottom: 10px;
+}
+
+.category-filter-name-container input {
+    border: none;
+}
+
+.category-filter-name-container input:focus {
+    box-shadow: none;
+}
+
+.category-filter-name-container input::placeholder {
+    color: #9E9E9E;
+}
+
+.category-filter-search-icon {
+    border: none;
+    background-color: unset;
+}
+
+.category-filter-bottom-container {
+    display: flex;
+}
+
+.category-filter-category-container {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.btn-category-filter-clear {
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.btn-category-filter-word {
+    display: none;
+}
+
+.category-filter-select__control {
+    font-size: 1em;
+    letter-spacing: -0.015em;
+    color: #263238;
+    border: none !important;
+    border-bottom: 1px solid #E1E1E1 !important;
+}
+
+.category-filter-select__placeholder {
+    color: #9E9E9E !important;
+}
+
+.category-filter-select__indicator-separator {
+    display: none;
+}
+
+@media (min-width: 576px) {
+    .btn-category-filter-word {
+        display: unset;
+    }
+}
+
+@media (min-width: 768px) {
+    .btn-category-filter-word {
+        display: none;
+    }
+    .category-filter-container {
+        margin-left: 20px;
+        flex: 1;
+        margin-bottom: 0;
+        padding: 10px 15px;
+    }
+    .category-filter-form {
+        display: flex;
+    }
+    .category-filter-name-container {
+        flex: 1;
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+    .product-filter-bottom-container {
+        flex: 1;
+    }
+}
+
+@media (min-width: 992px) {
+    .btn-product-filter-word {
+        display: unset;
+    }
+}

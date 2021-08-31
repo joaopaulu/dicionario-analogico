@@ -133,7 +133,7 @@ const Navbar = () => {
                 <li>
                   <Link
                     className="nav-link"
-                    to="/auth/login"
+                    to="/admin/auth/login"
                     onClick={() => setDrawerActive(false)}
                   >
                     LOGIN
@@ -162,7 +162,7 @@ const Navbar = () => {
         {!isAuthenticated() && (
           <Link
             className="nav-link"
-            to="/auth/login"
+            to="/admin/auth/login"
             onClick={() => setDrawerActive(false)}
           >
             Login

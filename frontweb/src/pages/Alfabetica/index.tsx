@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 import Pagination from 'components/Pagination';
 import VerbeteFilter, { VerbeteFilterData } from 'components/VerbeteFilter';
 import { SpringPage } from 'core/types/vendor/spring';
-import { Verbet } from 'core/types/Verbet';
+import { Verbet } from 'core/types/verbet';
 import { requestBackend } from 'core/utils/requests';
 import { useCallback, useEffect, useState } from 'react';
 import './styles.scss';
