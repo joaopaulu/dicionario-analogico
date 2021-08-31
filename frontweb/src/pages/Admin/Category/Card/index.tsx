@@ -28,9 +28,7 @@ const CategoryCrudCard = ({ category, onDelete }: Props) => {
     <div className="category crud-card base-card">
       <div className="crud-card-description">
         <div className="crud-card-bottom-container">
-          <span>
-            <strong> {category.descricao}</strong>
-          </span>
+          <span>{category.descricao}</span>
         </div>
       </div>
       <div className="crud-card-buttons-container">

@@ -23,9 +23,9 @@ const VerbeteFilter = ({ onSubmitFilter }: Props) => {
   };
 
   return (
-    <div className="base-card product-filter-container">
-      <form onSubmit={handleSubmit(onSubmit)} className="product-filter-form">
-        <div className="product-filter-name-container">
+    <div className="verbete-filter-container">
+      <form onSubmit={handleSubmit(onSubmit)} className="verbete-filter-form">
+        <div className="verbete-filter-name-container">
           <input
             {...register('descricao')}
             type="text"
@@ -33,16 +33,16 @@ const VerbeteFilter = ({ onSubmitFilter }: Props) => {
             placeholder="Verbete"
             name="descricao"
           />
-          <button className="product-filter-search-icon">
+          <button className="verbete-filter-search-icon">
             <SearchIcon />
           </button>
         </div>
-        <div className="product-filter-bottom-container">
+        <div className="verbete-filter-bottom-container">
           <button
             onClick={handleFormClear}
-            className="btn btn-outline-secondary btn-product-filter-clear"
+            className="btn btn-outline-secondary btn-verbete-filter-clear"
           >
-            LIMPAR<span className="btn-product-filter-word"> FILTRO</span>
+            LIMPAR<span className="btn-verbete-filter-word"> FILTRO</span>
           </button>
         </div>
       </form>
