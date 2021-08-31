@@ -1,34 +1,18 @@
-import { AxiosRequestConfig } from 'axios';
-import { User } from 'core/types/User';
-import { SpringPage } from 'core/types/vendor/spring';
-import { requestBackend } from 'core/utils/requests';
-import { useEffect, useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Form from './Form';
+import List from './List';
 
-const Users = () => {
-  const [page, setPage] = useState<SpringPage<User>>();
-
-  useEffect(() => {
-    const params: AxiosRequestConfig = {
-      url: '/users',
-      withCredentials: true,
-      params: {
-        page: 0,
-        size: 12,
-      },
-    };
-
-    requestBackend(params).then(response => {
-      setPage(response.data);
-    });
-  }, []);
-
+const User = () => {
   return (
-    <div>
-      {page?.content.map(item => (
-        <p key={item.id}>{item.email}</p>
-      ))}
-    </div>
+    <Switch>
+      <Route path="/admin/users" exact>
+        <List />
+      </Route>
+      <Route path="/admin/users/:userId">
+        <Form />
+      </Route>
+    </Switch>
   );
 };
 
-export default Users;
+export default User;

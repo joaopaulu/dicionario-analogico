@@ -5,7 +5,8 @@ import { requestBackendLogin } from 'core/utils/requests';
 import { saveAuthData } from 'core/utils/storage';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './styles.css';
 
 type CredentialsDTO = {
@@ -42,7 +43,7 @@ const Login = () => {
       })
       .catch(error => {
         setHasError(true);
-        console.log('ERRO', error);
+        toast.error('Usuário ou Senha inválidos!');
       });
   };
 
@@ -73,7 +74,7 @@ const Login = () => {
             {errors.username?.message}
           </div>
         </div>
-        <div className="mb-2">
+        <div className="mb-4">
           <input
             {...register('password', {
               required: 'Campo obrigatório',
@@ -89,17 +90,9 @@ const Login = () => {
             {errors.password?.message}
           </div>
         </div>
-        <Link to="/admin/auth/recover" className="login-link-recover">
-          Esqueci a senha
-        </Link>
+
         <div className="login-submit">
           <ButtonIcon text="Fazer login" />
-        </div>
-        <div className="signup-container">
-          <span className="not-registered">Não tem Cadastro?</span>
-          <Link to="/admin/auth/register" className="login-link-register">
-            CADASTRAR
-          </Link>
         </div>
       </form>
     </div>

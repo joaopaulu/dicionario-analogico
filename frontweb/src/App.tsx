@@ -1,4 +1,5 @@
 import { AuthContext, AuthContextData } from 'AuthContext';
+import 'beautiful-react-diagrams/styles.css';
 import { useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

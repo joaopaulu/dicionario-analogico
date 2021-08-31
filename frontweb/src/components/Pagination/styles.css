@@ -20,21 +20,21 @@
 }
 
 .pagination-item.active {
-    background-color: #407BFF;
+    background-color: var(--blue-1000);
 }
 
 .pagination-link-active {
-    background-color: #407BFF;
+    background-color: var(--blue-1000);
 }
 
 .arrow-previous {
     transform: rotate(-180deg);
-    color: #407BFF;
+    color: var(--blue-1000);
 }
 
 .arrow-next {
     margin-left: 10px;
-    color: #407BFF;
+    color: #797979;
 }
 
 .arrow-inactive {
@@ -42,7 +42,7 @@
 }
 
 .arrow-active {
-    color: #407BFF;
+    color: var(--blue-1000);
 }
 
 .pagination-arrow-container {
