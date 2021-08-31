@@ -1,4 +1,5 @@
 import jwtDecode from 'jwt-decode';
+import history from './history';
 import { getAuthData } from './storage';
 
 export type Role = 'ROLE_OPERATOR' | 'ROLE_ADMIN';
@@ -32,4 +33,9 @@ export const getTokenData = (): TokenData | undefined => {
 export const isAuthenticated = (): boolean => {
   const tokenData = getTokenData();
   return tokenData && tokenData.exp * 1000 > Date.now() ? true : false;
+};
+
+export const logout = () => {
+  localStorage.removeItem('authData');
+  history.replace('/auth/login');
 };

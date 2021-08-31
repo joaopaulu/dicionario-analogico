@@ -1,88 +1,173 @@
-import { AuthContext } from 'AuthContext';
-import 'bootstrap/js/src/collapse.js';
-import { getTokenData, isAuthenticated } from 'core/utils/auth';
-import history from 'core/utils/history';
-import { removeAuthData } from 'core/utils/storage';
-import React, { useContext, useEffect } from 'react';
+import logo from 'core/assets/images/logo-dicionario.png';
+import { ReactComponent as MenuIcon } from 'core/assets/images/menu.svg';
+import { isAuthenticated, logout } from 'core/utils/auth';
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import './styles.css';
+import './styles.scss';
 
 const Navbar = () => {
-  const { authContextData, setAuthContextData } = useContext(AuthContext);
+  const [drawerActive, setDrawerActive] = useState(false);
 
-  useEffect(() => {
-    if (isAuthenticated()) {
-      setAuthContextData({
-        authenticated: true,
-        tokenData: getTokenData(),
-      });
-    } else {
-      setAuthContextData({
-        authenticated: false,
-      });
-    }
-  }, [setAuthContextData]);
-
-  const handleLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleLogout = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ) => {
     event.preventDefault();
-    removeAuthData();
-    setAuthContextData({
-      authenticated: false,
-    });
-    history.replace('/');
+    logout();
   };
-
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-primary main-nav">
-      <div className="container-fluid">
-        {' '}
-        <Link to="/" className="nav-logo-text">
-          <h4>DS Catalog</h4>
-        </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#dscatalog-navbar"
-          aria-controls="dscatalog-navbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+    <nav className="bg-primary main-nav">
+      <div className="nav-logo">
+        <NavLink
+          to="/"
+          exact
+          className="nav-link"
+          onClick={() => setDrawerActive(false)}
         >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="dscatalog-navbar">
-          <ul className="navbar-nav offset-md-2 main-menu">
+          <img src={logo} alt="Dicionário Analógico" />
+        </NavLink>
+      </div>
+      <button
+        className="menu-mobile-btn"
+        type="button"
+        onClick={() => setDrawerActive(!drawerActive)}
+      >
+        <MenuIcon />
+      </button>
+
+      <div
+        className={drawerActive ? 'menu-mobile-container' : 'menu-container'}
+      >
+        <ul className="main-menu">
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/apresentacao"
+              onClick={() => setDrawerActive(false)}
+            >
+              Apresentação
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/elaboracao"
+              onClick={() => setDrawerActive(false)}
+            >
+              Elaboração
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/guia"
+              onClick={() => setDrawerActive(false)}
+            >
+              Guia de Consultas
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/lista"
+              onClick={() => setDrawerActive(false)}
+            >
+              Lista de Abreviaturas
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/creditos"
+              onClick={() => setDrawerActive(false)}
+            >
+              Créditos
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/referencias"
+              onClick={() => setDrawerActive(false)}
+            >
+              Referências
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/contato"
+              onClick={() => setDrawerActive(false)}
+            >
+              Contato
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="nav-link"
+              to="/admin/home"
+              onClick={() => setDrawerActive(false)}
+            >
+              Admin
+            </NavLink>
+          </li>
+          {drawerActive && (
             <li>
-              <NavLink to="/" activeClassName="active" exact>
-                HOME
-              </NavLink>
+              {isAuthenticated() && (
+                <a
+                  href="#logout"
+                  className="nav-link active d-inline"
+                  onClick={e => {
+                    setDrawerActive(false);
+                    handleLogout(e);
+                  }}
+                >
+                  LOGOUT
+                </a>
+              )}
             </li>
-            <li>
-              <NavLink to="/products" activeClassName="active">
-                CATÁLOGO
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/admin" activeClassName="active">
-                ADMIN
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-        <div className="nav-login-logout">
-          {authContextData.authenticated ? (
-            <>
-              <span className="nav-username">
-                {authContextData.tokenData?.user_name}
-              </span>
-              <a href="#logout" onClick={handleLogoutClick}>
-                LOGOUT
-              </a>
-            </>
-          ) : (
-            <Link to="/admin/auth">LOGIN</Link>
           )}
-        </div>
+
+          {drawerActive && (
+            <>
+              {!isAuthenticated() && (
+                <li>
+                  <Link
+                    className="nav-link"
+                    to="/auth/login"
+                    onClick={() => setDrawerActive(false)}
+                  >
+                    LOGIN
+                  </Link>
+                </li>
+              )}
+            </>
+          )}
+        </ul>
+      </div>
+      <div className="user-info-dnone text-right">
+        {isAuthenticated() && (
+          <>
+            <a
+              href="#logout"
+              className="nav-link active d-inline"
+              onClick={e => {
+                setDrawerActive(false);
+                handleLogout(e);
+              }}
+            >
+              Logout
+            </a>
+          </>
+        )}
+        {!isAuthenticated() && (
+          <Link
+            className="nav-link"
+            to="/auth/login"
+            onClick={() => setDrawerActive(false)}
+          >
+            Login
+          </Link>
+        )}
       </div>
     </nav>
   );
