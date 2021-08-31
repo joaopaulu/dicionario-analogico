@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+* {
+    font-family: "Roboto", sans-serif;
+}
+
+:root {
+    --white: #ffffff;
+    --gray-100: #e1e1e6;
+    --gray-300: #a8a8b3;
+    --gray-900: #a4b0be;
+    --blue-1000: #192a56;
+    --blue-900: #40739e;
+    --blue-700: #487eb0;
+    --grisalle: #718093;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+ul {
+    list-style-type: none;
+    margin-bottom: 0 !important;
+    padding-left: 0;
+}
+
+a {
+    &:hover {
+        text-decoration: none !important;
+        color: unset;
+    }
+}
+
+.border-radius-10 {
+    border-radius: 10px;
+}
+
+.border-radius-20 {
+    border-radius: 20px;
+}
+
+.card-base {
+    background: #fff;
+    padding: 20px;
+}
+
+.input-bt30 {
+    margin-bottom: 30px;
+}
+
+.input-base {
+    border: 1px solid #e1e1e1;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: -0.015em;
+    color: #263238;
+    height: 50px;
+    &::placeholder {
+        color: var(--grisalle);
+    }
+}
+
+.btn-outline-secondary {
+    color: var(--grisalle);
+}

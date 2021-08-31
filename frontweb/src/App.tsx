@@ -1,10 +1,10 @@
 import { AuthContext, AuthContextData } from 'AuthContext';
 import { useState } from 'react';
-import Routes from 'Routes';
-import './app.css';
-import './core/assets/styles/custom.scss';
-import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Routes from 'Routes';
+import './app.scss';
+import './core/assets/styles/custom.scss';
 
 const App = () => {
   const [authContextData, setAuthContextData] = useState<AuthContextData>({

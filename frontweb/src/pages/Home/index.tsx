@@ -3,28 +3,32 @@ import { ReactComponent as MainImage } from 'core/assets/images/main-image.svg';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
-const Home = () => {
-  return (
-    <div className="home-container">
-      <div className="home-card base-card">
-        <div className="home-content-container">
-          <h1>Conheça o melhor catálogo de produtos</h1>
-          <p>
-            Ajudaremos você a encontrar os melhores produtos disponíveis no
-            mercado
-          </p>
-          <div>
-            <Link to="/products">
-              <ButtonIcon text="Inicie agora a sua busca" />
-            </Link>
-          </div>
-        </div>
-        <div className="home-image-container">
-          <MainImage />
-        </div>
+const Home = () => (
+  <div className="home-container">
+    <div className="home-content">
+      <div className="home-text">
+        <Link to="/alfabetica">
+          <h1 className="text-title">
+            <span>Parte Alfabética</span>
+          </h1>
+        </Link>
+        <Link to="/analogica">
+          <h1 className="text-title">
+            <span>Parte Analógica</span>
+          </h1>
+        </Link>
+        <p className="text-subtitle">
+          Você quer consultar o dicionário que possibilite encontrar palavras
+          desconhecidas para o apendizado do Português do Brasil como segunda
+          Língua?
+        </p>
+        <Link to="/" className="start-search-btn">
+          <ButtonIcon text="Eu quero" />
+        </Link>
       </div>
+      <MainImage className="main-image" />
     </div>
-  );
-};
+  </div>
+);
 
 export default Home;

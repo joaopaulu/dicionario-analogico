@@ -2,9 +2,10 @@ import Navbar from 'components/NavBar';
 import history from 'core/utils/history';
 import Admin from 'pages/Admin';
 import Auth from 'pages/Admin/Auth';
-import Catalog from 'pages/Catalog';
+import Alfabetica from 'pages/Alfabetica';
+import Analogica from 'pages/Analogica';
+import AnalogicaDetails from 'pages/Analogica/Details';
 import Home from 'pages/Home';
-import ProductDetails from 'pages/ProductDetails';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 
 const Routes = () => (
@@ -14,11 +15,14 @@ const Routes = () => (
       <Route path="/" exact>
         <Home />
       </Route>
-      <Route path="/products" exact>
-        <Catalog />
+      <Route path="/analogica" exact>
+        <Analogica />
       </Route>
-      <Route path="/products/:productId">
-        <ProductDetails />
+      <Route path="/analogica/detalhes" exact>
+        <AnalogicaDetails />
+      </Route>
+      <Route path="/alfabetica" exact>
+        <Alfabetica />
       </Route>
       <Redirect from="/admin/auth" to="/admin/auth/login" exact />
       <Route path="/admin/auth">
