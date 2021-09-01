@@ -23,8 +23,8 @@
 }
 
 .admin-nav-item.active {
-    background: rgba(64, 123, 255, 0.3);
-    color: #407bff;
+    background-color: #dfe6e9;
+    color: var(--blue-1000);
 }
 
 .admin-nav-item p {

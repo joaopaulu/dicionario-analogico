@@ -35,7 +35,7 @@ const Alfabetica = () => {
   const getVerbetes = useCallback(() => {
     const config: AxiosRequestConfig = {
       method: 'GET',
-      url: '/verbetes',
+      url: '/verbetes?sort=descricao',
       params: {
         page: controlComponentsData.activePage,
         size: 6,
