@@ -1,19 +1,39 @@
+import { AuthContext } from 'AuthContext';
 import logo from 'core/assets/images/logo-dicionario.png';
 import { ReactComponent as MenuIcon } from 'core/assets/images/menu.svg';
-import { isAuthenticated, logout } from 'core/utils/auth';
-import React, { useState } from 'react';
+import { getTokenData, isAuthenticated } from 'core/utils/auth';
+import history from 'core/utils/history';
+import { removeAuthData } from 'core/utils/storage';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './styles.scss';
 
 const Navbar = () => {
   const [drawerActive, setDrawerActive] = useState(false);
+  const { authContextData, setAuthContextData } = useContext(AuthContext);
 
-  const handleLogout = (
-    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-  ) => {
+  useEffect(() => {
+    if (isAuthenticated()) {
+      setAuthContextData({
+        authenticated: true,
+        tokenData: getTokenData(),
+      });
+    } else {
+      setAuthContextData({
+        authenticated: false,
+      });
+    }
+  }, [setAuthContextData]);
+
+  const handleLogoutClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    logout();
+    removeAuthData();
+    setAuthContextData({
+      authenticated: false,
+    });
+    history.replace('/');
   };
+
   return (
     <nav className="bg-primary main-nav">
       <div className="nav-logo">
@@ -112,54 +132,35 @@ const Navbar = () => {
           </li>
           {drawerActive && (
             <li>
-              {isAuthenticated() && (
+              {authContextData.authenticated ? (
                 <a
                   href="#logout"
-                  className="nav-link active d-inline"
-                  onClick={e => {
-                    setDrawerActive(false);
-                    handleLogout(e);
-                  }}
+                  className="nav-link"
+                  onClick={handleLogoutClick}
                 >
                   LOGOUT
                 </a>
+              ) : (
+                <Link
+                  className="nav-link"
+                  to="/admin/auth/login"
+                  onClick={() => setDrawerActive(false)}
+                >
+                  LOGIN
+                </Link>
               )}
             </li>
-          )}
-
-          {drawerActive && (
-            <>
-              {!isAuthenticated() && (
-                <li>
-                  <Link
-                    className="nav-link"
-                    to="/admin/auth/login"
-                    onClick={() => setDrawerActive(false)}
-                  >
-                    LOGIN
-                  </Link>
-                </li>
-              )}
-            </>
           )}
         </ul>
       </div>
       <div className="user-info-dnone text-right">
-        {isAuthenticated() && (
+        {authContextData.authenticated ? (
           <>
-            <a
-              href="#logout"
-              className="nav-link active d-inline"
-              onClick={e => {
-                setDrawerActive(false);
-                handleLogout(e);
-              }}
-            >
+            <a href="#logout" className="nav-link" onClick={handleLogoutClick}>
               Logout
             </a>
           </>
-        )}
-        {!isAuthenticated() && (
+        ) : (
           <Link
             className="nav-link"
             to="/admin/auth/login"
