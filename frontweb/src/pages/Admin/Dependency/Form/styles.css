@@ -1,0 +1,63 @@
+.dependency-crud-form-card {
+    padding: 20px;
+}
+
+.dependency-crud-form-title {
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: #263238;
+    margin-bottom: 30px;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}
+
+.dependency-crud-inputs-container {
+    margin-bottom: 30px;
+}
+
+.dependency-crud-inputs-left-container {
+    margin-bottom: 30px;
+}
+
+.dependency-crud-buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dependency-crud-button {
+    height: 50px;
+    width: 110px;
+    border-radius: 10px;
+    font-weight: bold!important;
+}
+
+@media (min-width: 576px) {
+    .dependency-crud-buttons-container {
+        justify-content: flex-end;
+    }
+    .dependency-crud-button {
+        margin-left: 30px;
+        width: 270px;
+    }
+}
+
+.dependency-select {
+    border-radius: 10px !important;
+    font-size: 1em;
+    letter-spacing: -0.015em;
+    color: #263238;
+    height: 50px;
+}
+
+.dependency-select ::placeholder {
+    color: #9E9E9E !important;
+}
+
+@media (min-width: 992px) {
+    .dependency-crud-inputs-left-container {
+        margin-bottom: 0;
+    }
+}
