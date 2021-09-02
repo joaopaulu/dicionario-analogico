@@ -8,7 +8,7 @@ import br.com.dicionarioanalogico.entities.Role;
 import br.com.dicionarioanalogico.entities.User;
 import br.com.dicionarioanalogico.repositories.RoleRepository;
 import br.com.dicionarioanalogico.repositories.UserRepository;
-import br.com.dicionarioanalogico.services.exceptions.DatabaseException;
+import br.com.dicionarioanalogico.services.exceptions.DataBaseException;
 import br.com.dicionarioanalogico.services.exceptions.ResourceNotFoundException;
 import br.com.dicionarioanalogico.services.iface.IUserService;
 import org.slf4j.Logger;
@@ -82,7 +82,7 @@ public class UserService implements IUserService, UserDetailsService {
         }catch (EmptyResultDataAccessException e){
             throw new ResourceNotFoundException("Id not found " + id);
         }catch (DataIntegrityViolationException e){
-            throw new DatabaseException("Intedrity violation");
+            throw new DataBaseException("Intedrity violation");
         }
     }
 

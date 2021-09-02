@@ -5,7 +5,7 @@ import br.com.dicionarioanalogico.dto.DependencyDTO;
 import br.com.dicionarioanalogico.entities.Dependency;
 import br.com.dicionarioanalogico.mappers.DependencyMapper;
 import br.com.dicionarioanalogico.repositories.DependencyRepository;
-import br.com.dicionarioanalogico.services.exceptions.DatabaseException;
+import br.com.dicionarioanalogico.services.exceptions.DataBaseException;
 import br.com.dicionarioanalogico.services.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +63,7 @@ public class DependencyService {
         }catch (EmptyResultDataAccessException e){
             throw new ResourceNotFoundException("Id not found " + id);
         }catch (DataIntegrityViolationException e) {
-            throw new DatabaseException("Integrity violation");
+            throw new DataBaseException("Integrity violation");
         }
     }
 

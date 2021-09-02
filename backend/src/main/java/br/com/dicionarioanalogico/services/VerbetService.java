@@ -5,7 +5,7 @@ import br.com.dicionarioanalogico.dto.VerbetDTO;
 import br.com.dicionarioanalogico.entities.Verbet;
 import br.com.dicionarioanalogico.mappers.VerbetMapper;
 import br.com.dicionarioanalogico.repositories.VerbetRepository;
-import br.com.dicionarioanalogico.services.exceptions.DatabaseException;
+import br.com.dicionarioanalogico.services.exceptions.DataBaseException;
 import br.com.dicionarioanalogico.services.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +65,7 @@ public class VerbetService {
         }catch (EmptyResultDataAccessException e){
             throw new ResourceNotFoundException("Id not found " + id);
         }catch (DataIntegrityViolationException e) {
-            throw new DatabaseException("Integrity violation");
+            throw new DataBaseException("Integrity violation");
         }
     }
 

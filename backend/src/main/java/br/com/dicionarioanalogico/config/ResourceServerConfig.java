@@ -31,8 +31,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private JwtTokenStore tokenStore;
 
     private static final String[] PUBLIC = {"/oauth/token", "/h2-console/**", "/swagger-ui.html",
-            "/tematics/**", "/articles/**", "/categories/**", "/verbetes/**", "/dependencies/**"};
-    private static final String[] ADMIN = {"/users/**"};
+            "/tematics/**", "/articles/**", "/categories/**", "/verbetes/**", "/dependencies/**", "/users/**", "/roles/**"};
+    private static final String[] ADMIN = {"/contacts/**"};
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {

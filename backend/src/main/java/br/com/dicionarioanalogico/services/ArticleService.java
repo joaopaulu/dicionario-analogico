@@ -3,7 +3,7 @@ package br.com.dicionarioanalogico.services;
 import br.com.dicionarioanalogico.repositories.ArticleRepository;
 import br.com.dicionarioanalogico.dto.ArticleDTO;
 import br.com.dicionarioanalogico.entities.Article;
-import br.com.dicionarioanalogico.services.exceptions.DatabaseException;
+import br.com.dicionarioanalogico.services.exceptions.DataBaseException;
 import br.com.dicionarioanalogico.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -61,7 +61,7 @@ public class ArticleService {
         }catch (EmptyResultDataAccessException e){
             throw new ResourceNotFoundException("Id not found " + id);
         }catch (DataIntegrityViolationException e) {
-            throw new DatabaseException("Integrity violation");
+            throw new DataBaseException("Integrity violation");
         }
     }
 
