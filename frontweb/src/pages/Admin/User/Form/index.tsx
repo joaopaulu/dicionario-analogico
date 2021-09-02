@@ -36,7 +36,6 @@ const Form = () => {
     if (isEditing) {
       requestBackend({ url: `/users/${userId}` }).then(response => {
         const user = response.data as User;
-
         setValue('name', user.name);
         setValue('email', user.email);
         setValue('roles', user.roles);
@@ -112,7 +111,26 @@ const Form = () => {
                   {errors.email?.message}
                 </div>
               </div>
-
+            </div>
+            <div className="col-lg-6 product-crud-inputs-left-container">
+              <div className="margin-bottom-30">
+                <input
+                  {...register('password', {
+                    required: 'Campo obrigatório',
+                  })}
+                  type="password"
+                  className={`form-control base-input ${
+                    errors.password ? 'is-invalid' : ''
+                  }`}
+                  placeholder="Senha"
+                  name="password"
+                />
+                <div className="invalid-feedback d-block">
+                  {errors.password?.message}
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 product-crud-inputs-left-container">
               <div className="margin-bottom-30">
                 <Controller
                   name="roles"
@@ -134,24 +152,6 @@ const Form = () => {
                     Campo obrigatório
                   </div>
                 )}
-              </div>
-            </div>
-            <div className="col-lg-6 product-crud-inputs-left-container">
-              <div className="margin-bottom-30">
-                <input
-                  {...register('password', {
-                    required: 'Campo obrigatório',
-                  })}
-                  type="password"
-                  className={`form-control base-input ${
-                    errors.password ? 'is-invalid' : ''
-                  }`}
-                  placeholder="Senha"
-                  name="password"
-                />
-                <div className="invalid-feedback d-block">
-                  {errors.password?.message}
-                </div>
               </div>
             </div>
           </div>
