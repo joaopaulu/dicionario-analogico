@@ -1,6 +1,8 @@
 package br.com.dicionarioanalogico.resources;
 
+import br.com.dicionarioanalogico.dto.CategoryDTO;
 import br.com.dicionarioanalogico.dto.DependencyDTO;
+import br.com.dicionarioanalogico.dto.VerbetDTO;
 import br.com.dicionarioanalogico.entities.Dependency;
 import br.com.dicionarioanalogico.repositories.DependencyRepository;
 import br.com.dicionarioanalogico.services.DependencyService;
@@ -31,13 +33,12 @@ public class DependencyResource {
 
     @GetMapping
     @ApiOperation("Busca todos os dependencies")
-    public ResponseEntity<Page<DependencyDTO>> findAll(Pageable pageable) {
-        Page<DependencyDTO> list = service.findAllPaged(pageable);
+    public ResponseEntity<Page<DependencyDTO>> findAll(
+            @RequestParam(value = "descricao", defaultValue = "") String descricao,
+            Pageable pageable) {
+        Page<DependencyDTO> list = service.findAllPaged(descricao.trim(), pageable);
         return ResponseEntity.ok().body(list);
     }
-    /*public List<Dependency> listar(){
-        return repository.findAll();
-    }*/
 
     @GetMapping(value = "{id}")
     @ApiOperation("Busca um Dependencia por ID")

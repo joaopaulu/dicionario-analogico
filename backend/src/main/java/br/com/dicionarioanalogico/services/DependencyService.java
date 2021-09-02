@@ -2,13 +2,9 @@ package br.com.dicionarioanalogico.services;
 
 import br.com.dicionarioanalogico.config.Mapper;
 import br.com.dicionarioanalogico.dto.DependencyDTO;
-import br.com.dicionarioanalogico.dto.VerbetDTO;
 import br.com.dicionarioanalogico.entities.Dependency;
-import br.com.dicionarioanalogico.entities.Verbet;
 import br.com.dicionarioanalogico.mappers.DependencyMapper;
-import br.com.dicionarioanalogico.mappers.VerbetMapper;
 import br.com.dicionarioanalogico.repositories.DependencyRepository;
-import br.com.dicionarioanalogico.repositories.VerbetRepository;
 import br.com.dicionarioanalogico.services.exceptions.DatabaseException;
 import br.com.dicionarioanalogico.services.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
@@ -16,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,10 +27,9 @@ public class DependencyService {
     private DependencyRepository repository;
 
     @Transactional(readOnly = true)
-    public Page<DependencyDTO> findAllPaged(Pageable pageable){
-        Page<Dependency> list = repository.findAll(pageable);
-        var listConvert = Mapper.factory(DependencyMapper.class).entityToDtoList(list.toList());
-        return new PageImpl<DependencyDTO>(listConvert, list.getPageable(), list.getTotalElements());
+    public Page<DependencyDTO> findAllPaged(String descricao, Pageable pageable) {
+        Page<Dependency> page = repository.find(descricao, pageable);
+        return page.map(DependencyDTO::new);
     }
 
     @Transactional(readOnly = true)
