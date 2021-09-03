@@ -1,0 +1,67 @@
+.tematic-crud-form-card {
+    padding: 20px;
+}
+
+.tematic-crud-form-title {
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: #263238;
+    margin-bottom: 30px;
+}
+
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}
+
+.tematic-crud-inputs-container {
+    margin-bottom: 30px;
+}
+
+.tematic-crud-inputs-left-container {
+    margin-bottom: 30px;
+}
+
+.tematic-crud-buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tematic-crud-button {
+    height: 50px;
+    width: 110px;
+    border-radius: 10px;
+    font-weight: bold!important;
+}
+
+@media (min-width: 576px) {
+    .tematic-crud-buttons-container {
+        justify-content: flex-end;
+    }
+    .tematic-crud-button {
+        margin-left: 30px;
+        width: 270px;
+    }
+}
+
+.tematic-crud-select__control {
+    border-radius: 10px !important;
+    font-size: 1em;
+    letter-spacing: -0.015em;
+    color: #263238;
+    height: 50px;
+}
+
+.tematic-crud-select__placeholder {
+    color: #9E9E9E !important;
+}
+
+.tematic-crud-select__indicator-separator {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .tematic-crud-inputs-left-container {
+        margin-bottom: 0;
+    }
+}

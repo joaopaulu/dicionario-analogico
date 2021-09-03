@@ -5,6 +5,7 @@ import NavbarAdmin from './components/NavbarAdmin';
 import Dependency from './Dependency';
 import HomeAdmin from './Home';
 import './styles.css';
+import Tematic from './Tematic';
 import Users from './User';
 
 const Admin = () => {
@@ -18,6 +19,9 @@ const Admin = () => {
           </PrivateRoute>
           <PrivateRoute path="/admin/categories" roles={['ROLE_ADMIN']}>
             <Category />
+          </PrivateRoute>
+          <PrivateRoute path="/admin/tematics" roles={['ROLE_ADMIN']}>
+            <Tematic />
           </PrivateRoute>
           <PrivateRoute path="/admin/dependencies" roles={['ROLE_ADMIN']}>
             <Dependency />

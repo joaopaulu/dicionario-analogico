@@ -7,7 +7,7 @@ export type Tematic = {
   id: number;
   nome: string;
   descricao: string;
-  informacao_gramatical: string;
-  tipo_dependendia: string;
+  informacaoGramatical: string;
+  tipoDependencia: string;
   genero: string;
 };
