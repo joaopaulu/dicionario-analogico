@@ -10,14 +10,13 @@ import br.com.dicionarioanalogico.repositories.RoleRepository;
 import br.com.dicionarioanalogico.repositories.UserRepository;
 import br.com.dicionarioanalogico.services.exceptions.DataBaseException;
 import br.com.dicionarioanalogico.services.exceptions.ResourceNotFoundException;
-import br.com.dicionarioanalogico.services.iface.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -29,7 +28,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
-public class UserService implements IUserService, UserDetailsService {
+public class UserService implements UserDetailsService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -43,9 +42,9 @@ public class UserService implements IUserService, UserDetailsService {
     private RoleRepository roleRepository;
 
     @Transactional(readOnly = true)
-    public Page<UserDTO> findAllPaged(PageRequest pageRequest){
-        Page<User> list = repository.findAll(pageRequest);
-        return list.map(UserDTO::new);
+    public Page<UserDTO> findAllPaged(String name, Pageable pageable) {
+        Page<User> page = repository.find(name, pageable);
+        return page.map(UserDTO::new);
     }
 
     @Transactional(readOnly = true)
