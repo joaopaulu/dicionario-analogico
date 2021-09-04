@@ -1,5 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import Pagination from 'components/Pagination';
+import TematicFilter, { TematicFilterData } from 'components/TematicFilter';
 import { Tematic } from 'core/types/tematic';
 import { SpringPage } from 'core/types/vendor/spring';
 import { requestBackend } from 'core/utils/requests';
@@ -10,18 +11,27 @@ import './styles.css';
 
 type ControlComponentsData = {
   activePage: number;
+  filterData: TematicFilterData;
 };
 
 const List = () => {
   const [page, setPage] = useState<SpringPage<Tematic>>();
 
   const [controlComponentsData, setControlComponentsData] =
-    useState<ControlComponentsData>({ activePage: 0 });
+    useState<ControlComponentsData>({
+      activePage: 0,
+      filterData: { nome: '' },
+    });
 
   const handlePageChange = (pageNumber: number) => {
     setControlComponentsData({
       activePage: pageNumber,
+      filterData: controlComponentsData.filterData,
     });
+  };
+
+  const handleSubmitFilter = (data: TematicFilterData) => {
+    setControlComponentsData({ activePage: 0, filterData: data });
   };
 
   const getTematics = useCallback(() => {
@@ -31,6 +41,7 @@ const List = () => {
       params: {
         page: controlComponentsData.activePage,
         size: 6,
+        nome: controlComponentsData.filterData.nome,
       },
     };
 
@@ -51,6 +62,7 @@ const List = () => {
             ADICIONAR
           </button>
         </Link>
+        <TematicFilter onSubmitFilter={handleSubmitFilter} />
       </div>
       <div className="row">
         {page?.content.map(tematic => (

@@ -3,9 +3,10 @@ import { Dependency } from 'core/types/dependency';
 import { Tematic } from 'core/types/tematic';
 import { requestBackend } from 'core/utils/requests';
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
+import Select from 'react-select';
 import { toast } from 'react-toastify';
 import './styles.css';
 
@@ -29,7 +30,6 @@ const Form = () => {
 
   useEffect(() => {
     requestBackend({ url: '/dependencies' }).then(response => {
-      console.log(response.data.content);
       setSelectDependency(response.data.content);
     });
   }, []);
@@ -133,7 +133,33 @@ const Form = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-6 tematic-crud-inputs-left-container"></div>
+            <div className="col-lg-6 tematic-crud-inputs-left-container">
+              <div className="margin-bottom-30">
+                <Controller
+                  name="tipoDependencia"
+                  rules={{ required: true }}
+                  control={control}
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      options={selectDependency}
+                      classNamePrefix="tematic-crud-select"
+                      getOptionLabel={(dependency: Dependency) =>
+                        dependency.sigla
+                      }
+                      getOptionValue={(dependency: Dependency) =>
+                        String(dependency.id)
+                      }
+                    />
+                  )}
+                />
+                {errors.tipoDependencia && (
+                  <div className="invalid-feedback d-block">
+                    Campo obrigatório
+                  </div>
+                )}
+              </div>
+            </div>
             <div className="col-lg-6 tematic-crud-inputs-left-container">
               <div className="margin-bottom-30">
                 <input

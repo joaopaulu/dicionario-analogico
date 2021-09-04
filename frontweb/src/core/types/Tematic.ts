@@ -1,3 +1,5 @@
+import { Dependency } from './dependency';
+
 export type TematicResponse = {
   content: Tematic[];
   totalPages: number;
@@ -8,6 +10,6 @@ export type Tematic = {
   nome: string;
   descricao: string;
   informacaoGramatical: string;
-  tipoDependencia: string;
+  tipoDependencia: Dependency[];
   genero: string;
 };
