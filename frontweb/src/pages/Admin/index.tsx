@@ -7,6 +7,7 @@ import HomeAdmin from './Home';
 import './styles.css';
 import Tematic from './Tematic';
 import Users from './User';
+import Verbet from './Verbet';
 
 const Admin = () => {
   return (
@@ -25,6 +26,9 @@ const Admin = () => {
           </PrivateRoute>
           <PrivateRoute path="/admin/dependencies" roles={['ROLE_ADMIN']}>
             <Dependency />
+          </PrivateRoute>
+          <PrivateRoute path="/admin/verbets" roles={['ROLE_ADMIN']}>
+            <Verbet />
           </PrivateRoute>
           <PrivateRoute path="/admin/users" roles={['ROLE_ADMIN']}>
             <Users />
