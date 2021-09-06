@@ -1,3 +1,4 @@
+import history from 'core/utils/history';
 import './styles.scss';
 
 const AnalogicaDetails = () => {
@@ -58,6 +59,13 @@ const AnalogicaDetails = () => {
           </div>
         </div>
       </article>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={history.goBack}
+      >
+        Voltar
+      </button>
     </main>
   );
 };

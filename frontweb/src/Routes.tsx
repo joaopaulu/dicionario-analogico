@@ -43,7 +43,7 @@ const Routes = () => (
       <Route path="/analogica" exact>
         <Analogica />
       </Route>
-      <Route path="/analogica/detalhes" exact>
+      <Route path="/analogica/:analogicaId" exact>
         <AnalogicaDetails />
       </Route>
       <Route path="/alfabetica" exact>

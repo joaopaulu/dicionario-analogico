@@ -1,35 +1,51 @@
-import Diagram, { createSchema, useSchema } from 'beautiful-react-diagrams';
+import { AxiosRequestConfig } from 'axios';
+import { Tematic } from 'core/types/tematic';
+import { SpringPage } from 'core/types/vendor/spring';
+import { requestBackend } from 'core/utils/requests';
+import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 
-const initialSchema = createSchema({
-  nodes: [
-    { id: 'node-1', content: 'Campos Temáticos', coordinates: [425, 127] },
-    { id: 'node-2', content: 'Transporte', coordinates: [333, 27] },
-    { id: 'node-3', content: 'Lazer', coordinates: [167, 56] },
-    { id: 'node-4', content: 'Vestuário', coordinates: [277, 219] },
-    { id: 'node-5', content: 'Habitação', coordinates: [438, 264] },
-    { id: 'node-6', content: 'Animal', coordinates: [635, 36] },
-  ],
-  links: [
-    { input: 'node-1', output: 'node-2' },
-    { input: 'node-1', output: 'node-3' },
-    { input: 'node-1', output: 'node-4' },
-    { input: 'node-1', output: 'node-5' },
-    { input: 'node-1', output: 'node-6' },
-  ],
-});
-
 const Analogica = () => {
-  const [schema, { onChange }] = useSchema(initialSchema);
+  const [page, setPage] = useState<SpringPage<Tematic>>();
 
+  const getTematics = useCallback(() => {
+    const config: AxiosRequestConfig = {
+      method: 'GET',
+      url: '/tematics?sort=nome',
+    };
+    requestBackend(config).then(response => {
+      setPage(response.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    getTematics();
+  }, [getTematics]);
   return (
     <main className="container card-base">
       <article className="blog-post">
-        <h1 className="text-center blog-post-title mt-5">Parte Analógica</h1>
-        <div style={{ height: '32.5rem' }}>
-          <Diagram schema={schema} onChange={onChange} />
-        </div>
+        <h1 className="text-center blog-post-title mt-5 ">Parte Analógica</h1>
       </article>
+      <div>
+        <div className="table-responsive container-tematics">
+          <table className="table table-striped table-sm">
+            <tbody>
+              <>
+                {page?.content?.map(tematic => (
+                  <tr key={tematic.id}>
+                    <td>
+                      <Link to={`/analogica/${tematic.id}`}>
+                        <span className="title-tematics">{tematic.nome}</span>
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </main>
   );
 };
