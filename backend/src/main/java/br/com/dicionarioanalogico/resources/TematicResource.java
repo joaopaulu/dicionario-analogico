@@ -12,32 +12,33 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/tematics")
-@Api(tags = "Campos Temáticos")
+@Api(tags = "Campos Tematicos")
 public class TematicResource {
 
     @Autowired
     private TematicService service;
 
     @GetMapping
-    @ApiOperation("Busca todos os Campos Temáticos")
-    public ResponseEntity<Page<TematicDTO>> findAll(Pageable pageable) {
-        Page<TematicDTO> list = service.findAllPaged(pageable);
+    @ApiOperation("Consulta todos campos temáticos")
+    public ResponseEntity<Page<TematicDTO>> findAll(
+            @RequestParam(value = "nome", defaultValue = "") String nome,
+            Pageable pageable) {
+        Page<TematicDTO> list = service.findAllPaged(nome.trim(), pageable);
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "{id}")
-    @ApiOperation("Busca os Campo Temático por ID")
+    @ApiOperation("Consulta campos temáticos por código")
     public ResponseEntity<TematicDTO> findById(@PathVariable Long id){
         TematicDTO dto = service.findById(id);
         return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping
-    @ApiOperation("Insere um novo Campo Temático")
+    @ApiOperation("Inserir uma novo campo temático")
     public ResponseEntity<TematicDTO> insert(@RequestBody TematicDTO dto){
         dto = service.insert(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -46,16 +47,18 @@ public class TematicResource {
     }
 
     @PutMapping(value = "{id}")
-    @ApiOperation("Atualiza um novo Campo Temático")
+    @ApiOperation("Atualizar um campo temático")
     public ResponseEntity<TematicDTO> update(@PathVariable Long id, @RequestBody TematicDTO dto){
         dto = service.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }
 
     @DeleteMapping(value = "{id}")
-    @ApiOperation("Deleta um novo Campo Temático")
+    @ApiOperation("Deletar um campo temático")
     public ResponseEntity<TematicDTO> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
+
+

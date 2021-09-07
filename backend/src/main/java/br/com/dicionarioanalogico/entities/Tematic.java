@@ -1,6 +1,5 @@
 package br.com.dicionarioanalogico.entities;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +19,6 @@ public class Tematic implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

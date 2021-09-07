@@ -20,4 +20,9 @@ public class Dependency implements Serializable {
 
     private String descricao;
 
+    public void clear() {
+    }
+
+    public void add(Dependency dependency) {
+    }
 }
