@@ -1,6 +1,7 @@
 package br.com.dicionarioanalogico.resources;
 
 import br.com.dicionarioanalogico.dto.VerbetDTO;
+import br.com.dicionarioanalogico.dto.VerbetDescricaoDTO;
 import br.com.dicionarioanalogico.services.VerbetService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -28,7 +30,16 @@ public class VerbetResource {
     public ResponseEntity<Page<VerbetDTO>> findAll(
             @RequestParam(value = "descricao", defaultValue = "") String descricao,
             Pageable pageable) {
-        Page<VerbetDTO> list = service.findAllPaged(descricao.trim(), pageable);
+        Page<VerbetDTO> list = service.findAllPaged(descricao, pageable);
+        return ResponseEntity.ok().body(list);
+    }
+
+    @GetMapping(value = "/analogicas")
+    public ResponseEntity<List<VerbetDescricaoDTO>> findAll(
+            @RequestParam(value = "dependente", defaultValue = "") Integer dependente,
+            @RequestParam(value = "tpDependencia", defaultValue = "") Long tpDependencia
+            ) {
+        List<VerbetDescricaoDTO> list = service.findVerbete(dependente, tpDependencia);
         return ResponseEntity.ok().body(list);
     }
 

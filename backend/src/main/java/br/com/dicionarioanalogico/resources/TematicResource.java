@@ -49,6 +49,7 @@ public class TematicResource {
     @PutMapping(value = "{id}")
     @ApiOperation("Atualizar um campo temático")
     public ResponseEntity<TematicDTO> update(@PathVariable Long id, @RequestBody TematicDTO dto){
+        dto.setId(id);
         dto = service.update(id, dto);
         return ResponseEntity.ok().body(dto);
     }

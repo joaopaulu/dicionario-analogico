@@ -2,6 +2,7 @@ package br.com.dicionarioanalogico.services;
 
 import br.com.dicionarioanalogico.config.Mapper;
 import br.com.dicionarioanalogico.dto.VerbetDTO;
+import br.com.dicionarioanalogico.dto.VerbetDescricaoDTO;
 import br.com.dicionarioanalogico.entities.Verbet;
 import br.com.dicionarioanalogico.mappers.VerbetMapper;
 import br.com.dicionarioanalogico.repositories.VerbetRepository;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -32,6 +34,12 @@ public class VerbetService {
         Page<Verbet> list = repository.find(descricao, pageable);
         var listConvert = Mapper.factory(VerbetMapper.class).entityToDtoList(list.toList());
         return new PageImpl<VerbetDTO>(listConvert, list.getPageable(), list.getTotalElements());
+    }
+
+    @Transactional(readOnly = true)
+    public List<VerbetDescricaoDTO> findVerbete(Integer dependente, Long tpDependencia){
+        List<VerbetDescricaoDTO> list = repository.findVerbetDescricao(dependente, tpDependencia);
+        return list;
     }
 
     @Transactional(readOnly = true)
