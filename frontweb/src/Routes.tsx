@@ -13,6 +13,7 @@ import Guia from 'pages/Guia';
 import Home from 'pages/Home';
 import Lista from 'pages/Lista';
 import Referencias from 'pages/Referencias';
+import VerbeteDetails from 'pages/VerbeteDetails';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 
 const Routes = () => (
@@ -48,6 +49,9 @@ const Routes = () => (
       </Route>
       <Route path="/alfabetica" exact>
         <Alfabetica />
+      </Route>
+      <Route path="/verbete/:verbeteId" exact>
+        <VerbeteDetails />
       </Route>
       <Route path="/contato" exact>
         <Contato />

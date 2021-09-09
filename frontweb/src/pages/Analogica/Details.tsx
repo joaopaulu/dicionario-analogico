@@ -3,7 +3,7 @@ import { Tematic } from 'core/types/tematic';
 import history from 'core/utils/history';
 import { BASE_URL, requestBackend } from 'core/utils/requests';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './styles.scss';
 import SubsCard from './SubsCard';
 
@@ -52,7 +52,13 @@ const AnalogicaDetails = () => {
             <span className="title-tipo-dependencia">hipônimo:</span>
             <span className="txt-verbet">
               {analogicas?.map(analogica => {
-                return <SubsCard analogica={analogica} key={analogica.id} />;
+                return (
+                  <>
+                    <Link to={`/verbete/${analogica.id}`}>
+                      <SubsCard analogica={analogica} key={analogica.id} />
+                    </Link>
+                  </>
+                );
               })}
             </span>
           </div>
