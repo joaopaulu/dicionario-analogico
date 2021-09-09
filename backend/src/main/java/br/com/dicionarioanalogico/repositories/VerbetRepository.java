@@ -17,6 +17,7 @@ public interface VerbetRepository extends JpaRepository<Verbet, Long> {
 
     @Query("SELECT new br.com.dicionarioanalogico.dto.VerbetDescricaoDTO(obj.id, obj.descricao) " +
             "FROM Verbet obj WHERE "
-            + "obj.dependente = :dependente and obj.tipoDependencia.id = :tpDependencia ")
+            + "obj.dependente = :dependente and obj.tipoDependencia.id = :tpDependencia " +
+            " ORDER BY obj.descricao ")
     List<VerbetDescricaoDTO> findVerbetDescricao(Integer dependente, Long tpDependencia);
 }
