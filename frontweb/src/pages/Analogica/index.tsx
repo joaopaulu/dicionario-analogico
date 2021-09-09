@@ -36,7 +36,7 @@ const Analogica = () => {
                   <tr key={tematic.id}>
                     <td>
                       <Link to={`/analogica/${tematic.id}`}>
-                        <span className="title-tematics">{tematic.nome}</span>
+                        <span className="title-tematics">{tematic.nome}</span>{' '}
                       </Link>
                     </td>
                   </tr>

@@ -90,7 +90,7 @@ const Form = () => {
                     errors.nome ? 'is-invalid' : ''
                   }`}
                   placeholder="Nome"
-                  name="name"
+                  name="nome"
                 />
                 <div className="invalid-feedback d-block">
                   {errors.nome?.message}
