@@ -125,11 +125,12 @@ const AnalogicaDetails = () => {
               <div className="container-verbets">
                 <span className="title-tipo-dependencia">hipônimo:</span>
                 <span className="txt-verbet">
-                  {analogicasHip?.map(analogica => {
+                  {analogicasHip?.map((analogica, index, arr) => {
                     return (
                       <>
                         <Link to={`/verbete/${analogica.id}`}>
                           <SubsCard analogica={analogica} key={analogica.id} />
+                          {index === arr.length - 1 ? '' : ', '}
                         </Link>
                       </>
                     );
@@ -143,11 +144,12 @@ const AnalogicaDetails = () => {
               <div className="container-verbets">
                 <span className="title-tipo-dependencia">merônimo:</span>
                 <span className="txt-verbet">
-                  {analogicasMer?.map(analogica => {
+                  {analogicasMer?.map((analogica, index, arr) => {
                     return (
                       <>
                         <Link to={`/verbete/${analogica.id}`}>
                           <SubsCard analogica={analogica} key={analogica.id} />
+                          {index === arr.length - 1 ? '' : ', '}
                         </Link>
                       </>
                     );
@@ -161,11 +163,12 @@ const AnalogicaDetails = () => {
               <div className="container-verbets">
                 <span className="title-tipo-dependencia">con1:</span>
                 <span className="txt-verbet">
-                  {analogicasCon1?.map(analogica => {
+                  {analogicasCon1?.map((analogica, index, arr) => {
                     return (
                       <>
                         <Link to={`/verbete/${analogica.id}`}>
                           <SubsCard analogica={analogica} key={analogica.id} />
+                          {index === arr.length - 1 ? '' : ', '}
                         </Link>
                       </>
                     );
@@ -179,11 +182,12 @@ const AnalogicaDetails = () => {
               <div className="container-verbets">
                 <span className="title-tipo-dependencia">con2:</span>
                 <span className="txt-verbet">
-                  {analogicasCon2?.map(analogica => {
+                  {analogicasCon2?.map((analogica, index, arr) => {
                     return (
                       <>
                         <Link to={`/verbete/${analogica.id}`}>
                           <SubsCard analogica={analogica} key={analogica.id} />
+                          {index === arr.length - 1 ? '' : ', '}
                         </Link>
                       </>
                     );
@@ -197,11 +201,12 @@ const AnalogicaDetails = () => {
               <div className="container-verbets">
                 <span className="title-tipo-dependencia">con3:</span>
                 <span className="txt-verbet">
-                  {analogicasCon3?.map(analogica => {
+                  {analogicasCon3?.map((analogica, index, arr) => {
                     return (
                       <>
                         <Link to={`/verbete/${analogica.id}`}>
                           <SubsCard analogica={analogica} key={analogica.id} />
+                          {index === arr.length - 1 ? '' : ', '}
                         </Link>
                       </>
                     );
@@ -215,11 +220,12 @@ const AnalogicaDetails = () => {
               <div className="container-verbets">
                 <span className="title-tipo-dependencia">con4:</span>
                 <span className="txt-verbet">
-                  {analogicasCon4?.map(analogica => {
+                  {analogicasCon4?.map((analogica, index, arr) => {
                     return (
                       <>
                         <Link to={`/verbete/${analogica.id}`}>
                           <SubsCard analogica={analogica} key={analogica.id} />
+                          {index === arr.length - 1 ? '' : ', '}
                         </Link>
                       </>
                     );
@@ -233,11 +239,12 @@ const AnalogicaDetails = () => {
               <div className="container-verbets">
                 <span className="title-tipo-dependencia">con5:</span>
                 <span className="txt-verbet">
-                  {analogicasCon5?.map(analogica => {
+                  {analogicasCon5?.map((analogica, index, arr) => {
                     return (
                       <>
                         <Link to={`/verbete/${analogica.id}`}>
                           <SubsCard analogica={analogica} key={analogica.id} />
+                          {index === arr.length - 1 ? '' : ', '}
                         </Link>
                       </>
                     );
@@ -251,11 +258,12 @@ const AnalogicaDetails = () => {
               <div className="container-verbets">
                 <span className="title-tipo-dependencia">con6:</span>
                 <span className="txt-verbet">
-                  {analogicasCon6?.map(analogica => {
+                  {analogicasCon6?.map((analogica, index, arr) => {
                     return (
                       <>
                         <Link to={`/verbete/${analogica.id}`}>
                           <SubsCard analogica={analogica} key={analogica.id} />
+                          {index === arr.length - 1 ? '' : ', '}
                         </Link>
                       </>
                     );
@@ -269,11 +277,12 @@ const AnalogicaDetails = () => {
               <div className="container-verbets">
                 <span className="title-tipo-dependencia">verbo:</span>
                 <span className="txt-verbet">
-                  {analogicasVer?.map(analogica => {
+                  {analogicasVer?.map((analogica, index, arr) => {
                     return (
                       <>
                         <Link to={`/verbete/${analogica.id}`}>
                           <SubsCard analogica={analogica} key={analogica.id} />
+                          {index === arr.length - 1 ? '' : ', '}
                         </Link>
                       </>
                     );

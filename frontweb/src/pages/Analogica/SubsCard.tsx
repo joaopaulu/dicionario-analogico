@@ -5,6 +5,6 @@ type Props = {
   analogica: Analogica;
 };
 
-const SubsCard = ({ analogica }: Props) => <>{analogica?.descricao}, </>;
+const SubsCard = ({ analogica }: Props) => <>{analogica?.descricao}</>;
 
 export default SubsCard;

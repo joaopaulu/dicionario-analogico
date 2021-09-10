@@ -27,20 +27,31 @@ const VerbeteDetails = () => {
         <h1 className="text-center blog-post-title mt-5 ">
           {verbetes?.descricao}
         </h1>
-      </article>
-      <div>
-        <div className="verbete-details">
-          <span className="verbete-title">{verbetes?.separacaoSilabica}</span>{' '}
-          {verbetes?.genero} - {verbetes?.definicao}
+
+        <div>
+          <div className="verbete-details">
+            <p>
+              <strong>Separação Silábica: </strong>
+              {verbetes?.separacaoSilabica}
+            </p>
+            <p>
+              <strong>Genero:</strong> {verbetes?.genero}
+            </p>
+            <p>
+              <strong>Definição:</strong> {verbetes?.definicao}
+            </p>
+          </div>
         </div>
+      </article>
+      <div className="mt-3">
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={history.goBack}
+        >
+          Voltar
+        </button>
       </div>
-      <button
-        type="button"
-        className="btn btn-primary"
-        onClick={history.goBack}
-      >
-        Voltar
-      </button>
     </main>
   );
 };
