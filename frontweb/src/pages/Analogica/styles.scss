@@ -38,10 +38,23 @@
     }
 }
 
-.container-tematics {
-    a {
-        color: var(--grisalle);
-        font-weight: bold;
-        text-transform: capitalize;
-    }
+.tematic-diagram {
+    height: 234px;
+    margin-top: 100px;
+}
+
+.tematic-diagram-title {
+    background-color: var(--gray-100);
+    width: 200px;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+
+.title-tematics {
+    background-color: var(--gray-100);
+    margin: 0 auto;
+    border-radius: 5px;
+    color: var(--grisalle);
+    font-weight: bold;
+    text-transform: capitalize;
 }
