@@ -25,6 +25,7 @@
 
 .pagination-link-active {
     background-color: var(--blue-1000);
+    color: #FFF!important;
 }
 
 .arrow-previous {
