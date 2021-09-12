@@ -1,4 +1,5 @@
 import { AxiosRequestConfig } from 'axios';
+import ListLoader from 'components/ListLoader';
 import Pagination from 'components/Pagination';
 import VerbeteFilter, { VerbeteFilterData } from 'components/VerbeteFilter';
 import { SpringPage } from 'core/types/vendor/spring';
@@ -14,6 +15,7 @@ type ControlComponentsData = {
 
 const Alfabetica = () => {
   const [page, setPage] = useState<SpringPage<Verbet>>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [controlComponentsData, setControlComponentsData] =
     useState<ControlComponentsData>({
@@ -33,6 +35,7 @@ const Alfabetica = () => {
   };
 
   const getVerbetes = useCallback(() => {
+    setIsLoading(true);
     const config: AxiosRequestConfig = {
       method: 'GET',
       url: '/verbetes?sort=descricao',
@@ -43,9 +46,13 @@ const Alfabetica = () => {
       },
     };
 
-    requestBackend(config).then(response => {
-      setPage(response.data);
-    });
+    requestBackend(config)
+      .then(response => {
+        setPage(response.data);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [controlComponentsData]);
 
   useEffect(() => {
@@ -61,17 +68,23 @@ const Alfabetica = () => {
           <VerbeteFilter onSubmitFilter={handleSubmitFilter} />
           <table className="table table-striped table-sm">
             <tbody>
-              <>
-                {page?.content?.map(verbete => (
-                  <tr key={verbete.id}>
-                    <td>
-                      <span className="verbete-title">{verbete.descricao}</span>{' '}
-                      {verbete.separacaoSilabica} {verbete.genero}
-                      {verbete.definicao}
-                    </td>
-                  </tr>
-                ))}
-              </>
+              {isLoading ? (
+                <ListLoader />
+              ) : (
+                <>
+                  {page?.content?.map(verbete => (
+                    <tr key={verbete.id}>
+                      <td>
+                        <span className="verbete-title">
+                          {verbete.descricao}
+                        </span>{' '}
+                        {verbete.separacaoSilabica} {verbete.genero}
+                        {verbete.definicao}
+                      </td>
+                    </tr>
+                  ))}
+                </>
+              )}
             </tbody>
           </table>
           <Pagination

@@ -1,3 +1,4 @@
+import ListLoader from 'components/ListLoader';
 import { Analogica } from 'core/types/analogica';
 import { Tematic } from 'core/types/tematic';
 import history from 'core/utils/history';
@@ -23,13 +24,17 @@ const AnalogicaDetails = () => {
   const [analogicasVer, setAnalogicasVer] = useState<Analogica[]>([]);
   const [tematics, setTematics] = useState<Tematic>();
   const { tematicId } = useParams<UrlParams>();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    requestBackend({ url: `${BASE_URL}/tematics/${tematicId}` }).then(
-      response => {
+    setIsLoading(true);
+    requestBackend({ url: `${BASE_URL}/tematics/${tematicId}` })
+      .then(response => {
         setTematics(response.data);
-      },
-    );
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [tematicId]);
 
   useEffect(() => {
@@ -125,16 +130,25 @@ const AnalogicaDetails = () => {
               <div className="container-verbets">
                 <span className="title-tipo-dependencia">hipônimo:</span>
                 <span className="txt-verbet">
-                  {analogicasHip?.map((analogica, index, arr) => {
-                    return (
-                      <>
-                        <Link to={`/verbete/${analogica.id}`}>
-                          <SubsCard analogica={analogica} key={analogica.id} />
-                          {index === arr.length - 1 ? '' : ', '}
-                        </Link>
-                      </>
-                    );
-                  })}
+                  {isLoading ? (
+                    <ListLoader />
+                  ) : (
+                    <>
+                      {analogicasHip?.map((analogica, index, arr) => {
+                        return (
+                          <>
+                            <Link to={`/verbete/${analogica.id}`}>
+                              <SubsCard
+                                analogica={analogica}
+                                key={analogica.id}
+                              />
+                              {index === arr.length - 1 ? '' : ', '}
+                            </Link>
+                          </>
+                        );
+                      })}
+                    </>
+                  )}
                 </span>
               </div>
             </>
