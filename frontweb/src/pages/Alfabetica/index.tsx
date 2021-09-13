@@ -66,11 +66,11 @@ const Alfabetica = () => {
       <div>
         <div className="table-responsive">
           <VerbeteFilter onSubmitFilter={handleSubmitFilter} />
-          <table className="table table-striped table-sm">
-            <tbody>
-              {isLoading ? (
-                <ListLoader />
-              ) : (
+          {isLoading ? (
+            <ListLoader />
+          ) : (
+            <table className="table table-striped table-sm">
+              <tbody>
                 <>
                   {page?.content?.map(verbete => (
                     <tr key={verbete.id}>
@@ -84,9 +84,9 @@ const Alfabetica = () => {
                     </tr>
                   ))}
                 </>
-              )}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          )}
           <Pagination
             forcePage={page?.number}
             pageCount={page ? page.totalPages : 0}
