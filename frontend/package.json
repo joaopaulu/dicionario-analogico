@@ -1,6 +1,5 @@
 {
     "name": "frontend",
-    "homepage": "dicionarioanalogico.netlify.app",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -21,7 +20,7 @@
         "beautiful-react-diagrams": "^0.5.1",
         "bootstrap": "^5.1.0",
         "jwt-decode": "^3.1.2",
-        "node-sass": "^6.0.1",
+        "node-sass": "4.14.1",
         "qs": "^6.10.1",
         "react": "^17.0.2",
         "react-content-loader": "^6.0.3",
