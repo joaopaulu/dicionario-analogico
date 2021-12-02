@@ -1,5 +1,4 @@
 import Navbar from 'components/NavBar';
-import history from 'core/utils/history';
 import Admin from 'pages/Admin';
 import Auth from 'pages/Admin/Auth';
 import Alfabetica from 'pages/Alfabetica';
@@ -14,13 +13,13 @@ import Home from 'pages/Home';
 import Lista from 'pages/Lista';
 import Referencias from 'pages/Referencias';
 import VerbeteDetails from 'pages/VerbeteDetails';
-import { Redirect, Route, Router, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
 const Routes = () => (
-  <Router history={history}>
+  <BrowserRouter basename={'/dicionario-web'}>
     <Navbar />
     <Switch>
-      <Route path="/" exact>
+      <Route path="/" component={Home} exact>
         <Home />
       </Route>
       <Route path="/apresentacao" exact>
@@ -65,7 +64,7 @@ const Routes = () => (
         <Admin />
       </Route>
     </Switch>
-  </Router>
+  </BrowserRouter>
 );
 
 export default Routes;

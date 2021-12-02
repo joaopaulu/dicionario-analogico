@@ -3,8 +3,7 @@ import qs from 'qs';
 import history from './history';
 import { getAuthData } from './storage';
 
-export const BASE_URL =
-  process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
+export const BASE_URL = 'http://191.252.202.66:8080/dicionario';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'dicionario';
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'dicionario2021';
