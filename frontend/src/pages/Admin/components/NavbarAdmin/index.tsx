@@ -12,6 +12,11 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/admin/verbets" className="admin-nav-item">
+            Verbetes
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="/admin/categories" className="admin-nav-item">
             Categorias
           </NavLink>
@@ -26,11 +31,7 @@ const Navbar = () => {
             Dependências
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/admin/verbets" className="admin-nav-item">
-            Verbetes
-          </NavLink>
-        </li>
+
         {hasAnyRoles(['ROLE_ADMIN']) && (
           <li>
             <NavLink to="/admin/users" className="admin-nav-item">
