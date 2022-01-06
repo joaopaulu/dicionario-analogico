@@ -29,6 +29,8 @@ public class User implements UserDetails, Serializable {
     private String email;
     private String password;
 
+    private String status;
+
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE", name = "created_at")
     private LocalDate createdAt;
 

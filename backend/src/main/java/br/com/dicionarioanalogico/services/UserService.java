@@ -75,16 +75,6 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    public void delete(Long id) {
-        try {
-            repository.deleteById(id);
-        }catch (EmptyResultDataAccessException e){
-            throw new ResourceNotFoundException("Id not found " + id);
-        }catch (DataIntegrityViolationException e){
-            throw new DataBaseException("Intedrity violation");
-        }
-    }
-
     private void copyDtoEntity(UserDTO dto, User entity) {
         entity.setName(dto.getName());
         entity.setEmail(dto.getEmail());
