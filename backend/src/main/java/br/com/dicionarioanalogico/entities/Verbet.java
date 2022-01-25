@@ -73,6 +73,9 @@ public class Verbet implements Serializable {
 
     private String equiLibras;
 
+    @Column(name = "user_id_created", insertable = false, updatable = false)
+    private Integer userIdCreated;
+
     @ManyToOne
     @JoinColumn(name = "campo_tematico_id", referencedColumnName = "id")
     private Tematic tematics;

@@ -36,6 +36,7 @@ public class VerbetDTO implements Serializable {
     private String equiItaliano;
     private String equiJapones;
     private String equiLibras;
+    private Integer userIdCreated;
 
     private TematicDTO tematics;
     private DependencyDTO tipoDependencia;
