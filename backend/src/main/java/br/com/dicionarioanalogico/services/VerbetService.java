@@ -54,6 +54,7 @@ public class VerbetService {
         Verbet entity = Mapper.factory(VerbetMapper.class).dtoToEntity(dto);
         entity = repository.save(entity);
         return Mapper.factory(VerbetMapper.class).entityToDto(entity);
+
     }
 
     @Transactional

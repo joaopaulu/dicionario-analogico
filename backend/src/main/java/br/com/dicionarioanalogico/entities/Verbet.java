@@ -73,9 +73,6 @@ public class Verbet implements Serializable {
 
     private String equiLibras;
 
-    @Column(name = "user_id_created", insertable = false, updatable = false)
-    private Integer userIdCreated;
-
     @ManyToOne
     @JoinColumn(name = "campo_tematico_id", referencedColumnName = "id")
     private Tematic tematics;
@@ -86,11 +83,11 @@ public class Verbet implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id_created", referencedColumnName = "id")
-    private User userCreated;
+    private User userIdCreated;
 
     @ManyToOne
     @JoinColumn(name = "user_id_modified", referencedColumnName = "id")
-    private User userModified;
+    private User userIdModified;
 
     @ManyToMany
     @JoinTable(name = "categorias_has_verbetes",
