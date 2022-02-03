@@ -19,4 +19,5 @@ export type Verbet = {
   transitividadeVerbal: string;
   variantes: string;
   definicao: string;
+  fonteDefinicao: string;
 };

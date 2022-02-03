@@ -49,6 +49,8 @@ const Form = () => {
         setValue('pronuncia', verbet.pronuncia);
         setValue('genero', verbet.genero);
         setValue('transitividadeVerbal', verbet.transitividadeVerbal);
+        setValue('definicao', verbet.definicao);
+        setValue('fonteDefinicao', verbet.fonteDefinicao);
       });
     }
   }, [isEditing, verbetId, setValue]);
@@ -155,6 +157,42 @@ const Form = () => {
                 />
                 <div className="invalid-feedback d-block">
                   {errors.genero?.message}
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-12 verbet-crud-inputs-left-container">
+              <div className="margin-bottom-30">
+                <textarea
+                  rows={10}
+                  {...register('definicao', {
+                    required: 'Campo obrigatório',
+                  })}
+                  className={`form-control base-input h-auto ${
+                    errors.definicao ? 'is-invalid' : ''
+                  }`}
+                  placeholder="Definição"
+                  name="definicao"
+                ></textarea>
+                <div className="invalid-feedback d-block">
+                  {errors.definicao?.message}
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 verbet-crud-inputs-left-container">
+              <div className="margin-bottom-30">
+                <input
+                  {...register('fonteDefinicao', {
+                    required: 'Campo obrigatório',
+                  })}
+                  type="text"
+                  className={`form-control base-input ${
+                    errors.fonteDefinicao ? 'is-invalid' : ''
+                  }`}
+                  placeholder="Fonte Definição"
+                  name="fonteDefinicao"
+                />
+                <div className="invalid-feedback d-block">
+                  {errors.fonteDefinicao?.message}
                 </div>
               </div>
             </div>
