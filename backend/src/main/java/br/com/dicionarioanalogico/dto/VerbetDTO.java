@@ -1,8 +1,10 @@
 package br.com.dicionarioanalogico.dto;
 
+import br.com.dicionarioanalogico.entities.User;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -36,7 +38,10 @@ public class VerbetDTO implements Serializable {
     private String equiItaliano;
     private String equiJapones;
     private String equiLibras;
-    private Integer userIdCreated;
+
+    private User userIdCreated;
+
+    private User userIdModified;
 
     private TematicDTO tematics;
     private DependencyDTO tipoDependencia;
