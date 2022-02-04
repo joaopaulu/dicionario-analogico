@@ -1,9 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
+
 import history from './history';
 import { getAuthData } from './storage';
 
-export const BASE_URL = 'http://localhost:8081';
+export const BASE_URL = 'http://localhost:8080';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'dicionario';
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'dicionario2021';
